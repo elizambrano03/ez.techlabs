@@ -12,7 +12,7 @@ load_dotenv(BASE_DIR / '.env')
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'ez-techlabs-super-secret-key-production-change-this-!928347')
 DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = [h.strip() for h in os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,[::1],testserver').split(',') if h.strip()]
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,[::1],testserver,.onrender.com').split(',') if h.strip()]
 
 # Application definition
 INSTALLED_APPS = [
@@ -71,26 +71,41 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
-# Default to SQLite for local development; supports PostgreSQL in production via env
-DB_ENGINE = os.getenv('DB_ENGINE', 'django.db.backends.sqlite3')
-if 'postgres' in DB_ENGINE:
+# Supports PostgreSQL on Render/production via DATABASE_URL; falls back to SQLite locally
+DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL:
+    import urllib.parse
+    url = urllib.parse.urlparse(DATABASE_URL)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'ez_techlabs_db'),
-            'USER': os.getenv('DB_USER', 'ez_user'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'ez_password'),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '5432'),
+            'NAME': url.path[1:],
+            'USER': url.username,
+            'PASSWORD': url.password,
+            'HOST': url.hostname,
+            'PORT': url.port or '5432',
         }
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+    DB_ENGINE = os.getenv('DB_ENGINE', 'django.db.backends.sqlite3')
+    if 'postgres' in DB_ENGINE:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': os.getenv('DB_NAME', 'ez_techlabs_db'),
+                'USER': os.getenv('DB_USER', 'ez_user'),
+                'PASSWORD': os.getenv('DB_PASSWORD', 'ez_password'),
+                'HOST': os.getenv('DB_HOST', 'localhost'),
+                'PORT': os.getenv('DB_PORT', '5432'),
+            }
         }
-    }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
 
 # Authentication backends including django-axes for brute-force protection
 AUTHENTICATION_BACKENDS = [
@@ -156,9 +171,17 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'https://ez-techlabs-ve.netlify.app',
 ]
 if os.getenv('FRONTEND_URL'):
     CORS_ALLOWED_ORIGINS.append(os.getenv('FRONTEND_URL').strip())
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ez-techlabs-ve.netlify.app',
+    'https://*.onrender.com',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+]
 
 # Obfuscated Admin URL from environment or custom default
 ADMIN_URL_PATH = os.getenv('ADMIN_URL_PATH', 'gestor-ez/').strip('/') + '/'
