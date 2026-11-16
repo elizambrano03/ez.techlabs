@@ -42,3 +42,4 @@ services:
         generateValue: true
       - key: SECURE_SSL_REDIRECT
         value: "False" # Render handles SSL termination at proxy level
+

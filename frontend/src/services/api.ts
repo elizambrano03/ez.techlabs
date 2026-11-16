@@ -1,6 +1,6 @@
 import type { SiteConfig, ServiceItem, PortfolioItem, FAQItem, LeadSubmission } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://ez-techlabs-backend.onrender.com/api/v1';
 
 export const fallbackConfig: SiteConfig = {
   id: 1,

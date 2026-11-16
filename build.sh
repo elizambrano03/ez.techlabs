@@ -19,3 +19,4 @@ echo "==> Recolectando archivos estáticos para WhiteNoise..."
 python backend/manage.py collectstatic --noinput
 
 echo "==> ¡Build de Render completado exitosamente!"
+
