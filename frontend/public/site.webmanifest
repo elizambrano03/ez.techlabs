@@ -1,0 +1,22 @@
+{
+  "name": "EZ Techlabs - Software & Páginas Web",
+  "short_name": "EZ Techlabs",
+  "description": "Páginas web y software que hacen que tu negocio venda. Zulia, Venezuela.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0C1214",
+  "theme_color": "#0C1214",
+  "icons": [
+    {
+      "src": "/assets/logo/eztechlabs-iso.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo/eztechlabs-iso.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

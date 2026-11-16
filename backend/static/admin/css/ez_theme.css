@@ -1,0 +1,440 @@
+/* EZ Techlabs Admin Theme — Dark Cyberpunk Architecture */
+
+:root {
+  --ez-bg: #0C1214;
+  --ez-panel: #162126;
+  --ez-panel-elevated: #1D2A30;
+  --ez-panel-header: #10191D;
+  --ez-border: #2B3A3F;
+  --ez-border-subtle: #1E2B30;
+  --ez-neon: #A6F20F;
+  --ez-neon-glow: rgba(166, 242, 15, 0.35);
+  --ez-text: #F4F7F5;
+  --ez-muted: #B8C4BF;
+  --ez-dim: #7C8E87;
+  --ez-danger: #FF4D4D;
+  --ez-warning: #FFB300;
+  --ez-info: #00B0FF;
+
+  /* Django admin variable overrides */
+  --primary: #A6F20F;
+  --secondary: #162126;
+  --accent: #A6F20F;
+  --primary-fg: #0C1214;
+  --body-fg: #F4F7F5;
+  --body-bg: #0C1214;
+  --body-quiet-color: #B8C4BF;
+  --header-color: #F4F7F5;
+  --header-bg: #10191D;
+  --header-link-color: #A6F20F;
+  --breadcrumbs-fg: #B8C4BF;
+  --breadcrumbs-link-fg: #A6F20F;
+  --breadcrumbs-bg: #162126;
+  --link-fg: #A6F20F;
+  --link-hover-color: #C2FF47;
+  --link-selected-fg: #A6F20F;
+  --hairline-color: #2B3A3F;
+  --border-color: #2B3A3F;
+}
+
+body {
+  background-color: var(--ez-bg) !important;
+  color: var(--ez-text) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Space Grotesk", sans-serif;
+}
+
+/* Header & Branding */
+#header {
+  background: var(--ez-panel-header) !important;
+  color: var(--ez-text) !important;
+  border-bottom: 1px solid var(--ez-border) !important;
+  padding: 12px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.ez-header-branding {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ez-admin-logo {
+  height: 34px;
+  width: auto;
+  object-contain: fit;
+  display: block;
+}
+
+.ez-sys-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--ez-border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--ez-muted);
+  letter-spacing: 0.5px;
+}
+
+.ez-radar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ez-neon);
+  box-shadow: 0 0 8px var(--ez-neon);
+  animation: ez-pulse 2s infinite;
+}
+
+@keyframes ez-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(166, 242, 15, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(166, 242, 15, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(166, 242, 15, 0); }
+}
+
+#user-tools {
+  font-size: 12px !important;
+  font-family: monospace !important;
+  color: var(--ez-muted) !important;
+}
+
+#user-tools a {
+  color: var(--ez-neon) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  border-bottom: 1px dashed var(--ez-neon);
+}
+
+#user-tools a:hover {
+  color: #fff !important;
+  border-bottom-style: solid;
+}
+
+/* Breadcrumbs */
+div.breadcrumbs {
+  background: var(--ez-panel) !important;
+  color: var(--ez-muted) !important;
+  border-bottom: 1px solid var(--ez-border) !important;
+  font-size: 12px !important;
+  padding: 10px 24px !important;
+}
+
+div.breadcrumbs a {
+  color: var(--ez-neon) !important;
+}
+
+/* Modules, Cards & Dashboard Tables */
+.module {
+  background: var(--ez-panel) !important;
+  border: 1px solid var(--ez-border) !important;
+  border-radius: 12px !important;
+  margin-bottom: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.module caption, .module h2 {
+  background: var(--ez-panel-header) !important;
+  color: var(--ez-text) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  padding: 12px 18px !important;
+  border-bottom: 1px solid var(--ez-border) !important;
+}
+
+.module h2 a {
+  color: var(--ez-neon) !important;
+}
+
+/* Tables */
+table {
+  background: var(--ez-panel) !important;
+  color: var(--ez-text) !important;
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+thead th {
+  background: var(--ez-panel-header) !important;
+  color: var(--ez-muted) !important;
+  font-size: 12px !important;
+  font-family: monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  border-bottom: 1px solid var(--ez-border) !important;
+  padding: 12px 16px !important;
+}
+
+thead th a {
+  color: var(--ez-muted) !important;
+}
+
+thead th.sorted a {
+  color: var(--ez-neon) !important;
+}
+
+tbody tr {
+  background: var(--ez-panel) !important;
+  border-bottom: 1px solid var(--ez-border-subtle) !important;
+  transition: background 0.15s ease !important;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+tbody tr:hover {
+  background: var(--ez-panel-elevated) !important;
+}
+
+td, th {
+  padding: 12px 16px !important;
+  font-size: 13px !important;
+}
+
+/* Forms & Inputs */
+input[type="text"], input[type="password"], input[type="email"], input[type="url"],
+input[type="number"], input[type="tel"], textarea, select {
+  background: #090e10 !important;
+  color: var(--ez-text) !important;
+  border: 1px solid var(--ez-border) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  outline: none !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--ez-neon) !important;
+  box-shadow: 0 0 10px rgba(166, 242, 15, 0.2) !important;
+}
+
+/* Primary Action Buttons */
+.button, input[type="submit"], input[type="button"], .submit-row input, a.button {
+  background: var(--ez-neon) !important;
+  color: #0C1214 !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 10px 18px !important;
+  font-size: 12px !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: inline-block !important;
+}
+
+.button:hover, input[type="submit"]:hover, input[type="button"]:hover, .submit-row input:hover {
+  background: #B9FF24 !important;
+  box-shadow: 0 0 15px rgba(166, 242, 15, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.button.default, input[type="submit"].default {
+  background: var(--ez-neon) !important;
+  color: #0C1214 !important;
+}
+
+.button.deletelink, a.deletelink {
+  background: #381515 !important;
+  color: #FF6666 !important;
+  border: 1px solid #772222 !important;
+}
+
+.button.deletelink:hover, a.deletelink:hover {
+  background: var(--ez-danger) !important;
+  color: #fff !important;
+}
+
+/* Object Tools & Add buttons */
+.object-tools a {
+  background: var(--ez-panel-elevated) !important;
+  color: var(--ez-neon) !important;
+  border: 1px solid var(--ez-border) !important;
+  border-radius: 8px !important;
+  font-family: monospace !important;
+  font-size: 11px !important;
+  padding: 8px 14px !important;
+  text-transform: uppercase !important;
+}
+
+.object-tools a:hover {
+  background: var(--ez-neon) !important;
+  color: #0C1214 !important;
+  border-color: var(--ez-neon) !important;
+}
+
+/* Filter Sidebar */
+#changelist-filter {
+  background: var(--ez-panel-header) !important;
+  border-left: 1px solid var(--ez-border) !important;
+}
+
+#changelist-filter h2 {
+  background: var(--ez-panel) !important;
+  color: var(--ez-neon) !important;
+  font-size: 13px !important;
+  border-bottom: 1px solid var(--ez-border) !important;
+}
+
+#changelist-filter li.selected a {
+  color: var(--ez-neon) !important;
+  font-weight: 700 !important;
+}
+
+/* Login Page Custom Styling */
+.ez-login-body {
+  background: radial-gradient(circle at 50% 20%, #162126 0%, #0C1214 70%) !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ez-login-wrapper {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.ez-login-card {
+  background: rgba(22, 33, 38, 0.95);
+  border: 1px solid var(--ez-border);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(166, 242, 15, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.ez-login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.ez-logo-container {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.ez-iso-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(166, 242, 15, 0.4);
+}
+
+.ez-login-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--ez-text);
+  margin: 0 0 6px 0;
+}
+
+.ez-login-subtitle {
+  font-size: 13px;
+  font-family: monospace;
+  color: var(--ez-muted);
+  margin: 0;
+}
+
+.ez-login-alert {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.ez-alert-error {
+  background: rgba(255, 77, 77, 0.15);
+  border: 1px solid var(--ez-danger);
+  color: #ffb3b3;
+}
+
+.ez-field-group {
+  margin-bottom: 20px;
+}
+
+.ez-label {
+  display: block;
+  font-size: 11px;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: var(--ez-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.ez-input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  background: #090e10 !important;
+  border: 1px solid var(--ez-border) !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+}
+
+.ez-btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--ez-neon);
+  color: #0C1214;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(166, 242, 15, 0.35);
+  transition: all 0.2s ease;
+}
+
+.ez-btn-submit:hover {
+  background: #B9FF24;
+  box-shadow: 0 0 25px rgba(166, 242, 15, 0.55);
+  transform: translateY(-1px);
+}
+
+.ez-login-security {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ez-border);
+  text-align: center;
+}
+
+.ez-security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--ez-neon);
+  margin-bottom: 8px;
+}
+
+.ez-dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ez-neon);
+  animation: ez-pulse 1.5s infinite;
+}
+
+.ez-security-text {
+  font-size: 11px;
+  color: var(--ez-dim);
+  margin: 0;
+  line-height: 1.5;
+}
+

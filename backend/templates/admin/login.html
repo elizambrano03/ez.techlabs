@@ -1,0 +1,85 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/login.css' %}" />
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login ez-login-body{% endblock %}
+
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div class="ez-login-wrapper">
+  <div class="ez-login-card">
+    
+    <!-- Logo & Shield Header -->
+    <div class="ez-login-header">
+      <div class="ez-logo-container">
+        <img src="{% static 'assets/logo/eztechlabs-iso.png' %}" alt="EZ Techlabs" class="ez-iso-icon" />
+      </div>
+      <h1 class="ez-login-title">EZ Techlabs</h1>
+      <p class="ez-login-subtitle">Centro de Control y Gestión de Plataforma</p>
+    </div>
+
+    <!-- Error Messages -->
+    {% if form.errors and not form.non_field_errors %}
+      <div class="ez-login-alert ez-alert-error">
+        {% blocktranslate count counter=form.errors.items|length %}Por favor corrige el error abajo.{% plural %}Por favor corrige los errores abajo.{% endblocktranslate %}
+      </div>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <div class="ez-login-alert ez-alert-error">
+          {{ error }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if user.is_authenticated %}
+      <div class="ez-login-alert ez-alert-warning">
+        Estás autenticado como <strong>{{ request.user.username }}</strong>, pero no tienes permisos de administración en este panel.
+      </div>
+    {% endif %}
+
+    <!-- Login Form -->
+    <form action="{{ app_path }}" method="post" id="login-form" class="ez-form">
+      {% csrf_token %}
+      
+      <div class="ez-field-group">
+        <label for="id_username" class="ez-label">Usuario Administrador</label>
+        <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username" class="ez-input" placeholder="admin" />
+      </div>
+
+      <div class="ez-field-group">
+        <label for="id_password" class="ez-label">Contraseña de Seguridad</label>
+        <input type="password" name="password" autocomplete="current-password" required id="id_password" class="ez-input" placeholder="••••••••••••" />
+      </div>
+
+      <div class="ez-submit-container">
+        <button type="submit" class="ez-btn-submit">
+          Ingresar al Panel Seguro
+        </button>
+      </div>
+    </form>
+
+    <!-- Security Telemetry Notice -->
+    <div class="ez-login-security">
+      <div class="ez-security-badge">
+        <span class="ez-dot-pulse"></span>
+        <span>AUDITORÍA ACTIVA • PROTECCIÓN CONTRA FUERZA BRUTA</span>
+      </div>
+      <p class="ez-security-text">
+        Límite de 5 intentos fallidos por dirección IP. Sesión cifrada bajo protocolo TLS/HTTPS.
+      </p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+

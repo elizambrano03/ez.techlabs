@@ -1,0 +1,74 @@
+services:
+  # Database Service (PostgreSQL 16)
+  db:
+    image: postgres:16-alpine
+    container_name: ez_techlabs_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-ez_techlabs_db}
+      POSTGRES_USER: ${DB_USER:-ez_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-ez_super_password_2026}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ez_user} -d ${DB_NAME:-ez_techlabs_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ez_network
+
+  # Backend Service (Python 3.12 + Django 5 + Gunicorn)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/Dockerfile.backend
+    container_name: ez_techlabs_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-ez-techlabs-prod-secret-key-change-in-env-982347}
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,backend,eztechlabs.com,www.eztechlabs.com}
+      DB_ENGINE: django.db.backends.postgresql
+      DB_NAME: ${DB_NAME:-ez_techlabs_db}
+      DB_USER: ${DB_USER:-ez_user}
+      DB_PASSWORD: ${DB_PASSWORD:-ez_super_password_2026}
+      DB_HOST: db
+      DB_PORT: "5432"
+      ADMIN_URL_PATH: ${ADMIN_URL_PATH:-gestor-ez/}
+      ADMIN_DEFAULT_USER: ${ADMIN_DEFAULT_USER:-admin}
+      ADMIN_DEFAULT_EMAIL: ${ADMIN_DEFAULT_EMAIL:-admin@eztechlabs.com}
+      ADMIN_DEFAULT_PASSWORD: ${ADMIN_DEFAULT_PASSWORD:-Ingeniero01*}
+      FRONTEND_URL: ${FRONTEND_URL:-https://eztechlabs.com}
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    networks:
+      - ez_network
+
+  # Frontend Service (Vite React Dist + Nginx Reverse Proxy)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/Dockerfile.frontend
+    container_name: ez_techlabs_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - ez_network
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+
+networks:
+  ez_network:
+    driver: bridge
+

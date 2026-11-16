@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | EZ Techlabs - Centro de Control{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <link rel="icon" type="image/png" href="{% static 'assets/logo/eztechlabs-iso.png' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/ez_theme.css' %}" />
+  <meta name="theme-color" content="#0C1214" />
+{% endblock %}
+
+{% block branding %}
+<div id="site-name" class="ez-header-branding">
+  <a href="{% url 'admin:index' %}" class="ez-brand-link">
+    <img src="{% static 'assets/logo/eztechlabs-horizontal-dark.png' %}" alt="EZ Techlabs" class="ez-admin-logo" />
+  </a>
+  <div class="ez-sys-status">
+    <span class="ez-radar-dot"></span>
+    <span>SISTEMA 24/7 ACTIVO • MARACAIBO [10.64° N, 71.61° W]</span>
+  </div>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+

@@ -1,0 +1,8 @@
+# Robots.txt for EZ Techlabs (https://eztechlabs.com)
+User-agent: *
+Allow: /
+Disallow: /gestor-ez/
+Disallow: /api/
+
+Sitemap: https://eztechlabs.com/sitemap.xml
+
