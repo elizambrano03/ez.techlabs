@@ -85,6 +85,14 @@ Abre tu navegador en:
 
 ---
 
+## 🌐 Despliegue en Vivo en Netlify
+
+El sitio web ya se encuentra **100% desplegado y operativo en producción**:
+👉 **URL Pública en Vivo:** [https://ez-techlabs-ve.netlify.app](https://ez-techlabs-ve.netlify.app)
+👉 **Panel de Proyecto Netlify:** [https://app.netlify.com/projects/ez-techlabs-ve](https://app.netlify.com/projects/ez-techlabs-ve)
+
+---
+
 ## 🌐 Despliegue en Netlify (Frontend Inmediato)
 
 El frontend está optimizado y pre-configurado para desplegarse en **Netlify** con cero fricción:
