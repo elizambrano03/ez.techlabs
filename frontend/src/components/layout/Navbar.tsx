@@ -22,7 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({ config }) => {
     { label: 'Servicios', href: '#servicios' },
     { label: 'Páginas Web', href: '#servicios-destacado', highlight: true },
     { label: 'Proceso & Garantía', href: '#proceso' },
-    { label: 'Portafolio', href: '#portafolio' },
     { label: 'Preguntas', href: '#faq' },
     { label: 'Contacto', href: '#contacto' },
   ];

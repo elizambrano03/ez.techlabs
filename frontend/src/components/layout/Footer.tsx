@@ -66,11 +66,6 @@ export const Footer: React.FC<FooterProps> = ({ config }) => {
                 </a>
               </li>
               <li>
-                <a href="#portafolio" className="hover:text-ez-neon transition-colors">
-                  Portafolio & Demostraciones
-                </a>
-              </li>
-              <li>
                 <a href="#faq" className="hover:text-ez-neon transition-colors">
                   Preguntas Frecuentes
                 </a>

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { api, fallbackConfig, fallbackServices, fallbackPortfolio, fallbackFAQs } from './services/api';
-import type { SiteConfig, ServiceItem, PortfolioItem, FAQItem } from './types';
+import { api, fallbackConfig, fallbackServices, fallbackFAQs } from './services/api';
+import type { SiteConfig, ServiceItem, FAQItem } from './types';
 import { Navbar } from './components/layout/Navbar';
 import { Hero } from './components/hero/Hero';
 import { TechMarquee } from './components/layout/TechMarquee';
 import { ServicesBento } from './components/services/ServicesBento';
 import { ProcessTimeline } from './components/process/ProcessTimeline';
-import { PortfolioSection } from './components/portfolio/PortfolioSection';
 import { FAQSection } from './components/faq/FAQSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
@@ -16,21 +15,18 @@ import { CustomCursor } from './components/ui/CustomCursor';
 export const App: React.FC = () => {
   const [config, setConfig] = useState<SiteConfig>(fallbackConfig);
   const [services, setServices] = useState<ServiceItem[]>(fallbackServices);
-  const [portfolio, setPortfolio] = useState<PortfolioItem[]>(fallbackPortfolio);
   const [faqs, setFaqs] = useState<FAQItem[]>(fallbackFAQs);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [configRes, servicesRes, portfolioRes, faqsRes] = await Promise.all([
+        const [configRes, servicesRes, faqsRes] = await Promise.all([
           api.getConfig(),
           api.getServices(),
-          api.getPortfolio(),
           api.getFAQs(),
         ]);
         setConfig(configRes);
         setServices(servicesRes);
-        setPortfolio(portfolioRes);
         setFaqs(faqsRes);
       } catch (err) {
         console.warn("Using offline fallback data for EZ Techlabs", err);
@@ -56,14 +52,11 @@ export const App: React.FC = () => {
         {/* Technical Stack Marquee */}
         <TechMarquee />
 
-        {/* Services Bento Grid (Includes Pack Perfil Pro $15 Spotlight) */}
+        {/* Services Bento Grid */}
         <ServicesBento services={services} config={config} />
 
         {/* Process in 3 Steps + 50/50 Commitment + Zulia Coverage */}
         <ProcessTimeline config={config} />
-
-        {/* Portfolio & Case Studies */}
-        <PortfolioSection projects={portfolio} />
 
         {/* FAQs Section */}
         <FAQSection faqs={faqs} config={config} />
