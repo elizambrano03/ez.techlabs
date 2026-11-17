@@ -23,17 +23,17 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) 
     : projects.filter((p) => p.category === selectedFilter);
 
   return (
-    <section id="portafolio" className="py-24 bg-ez-bg relative">
+    <section id="portafolio" className="py-16 sm:py-24 bg-ez-bg relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-ez-border">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 pb-6 border-b border-ez-border">
           <div>
             <div className="flex items-center space-x-2 text-xs font-mono text-ez-neon uppercase tracking-wider mb-3">
               <span className="w-2 h-2 rounded-full bg-ez-neon"></span>
               <span>CASOS DE ESTUDIO & DEMOSTRACIONES</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight">
               Portafolio de <span className="text-ez-neon">proyectos</span>.
             </h2>
           </div>
@@ -47,13 +47,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) 
           </div>
         </div>
 
-        {/* Filter Categories Pill Bar */}
-        <div className="flex flex-wrap items-center gap-2 mb-12">
+        {/* Filter Categories Pill Bar - Mobile horizontal swipe */}
+        <div className="flex items-center gap-2 mb-8 sm:mb-12 overflow-x-auto no-scrollbar pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap flex-nowrap">
           {filterOptions.map((opt) => (
             <button
               key={opt.value}
               onClick={() => setSelectedFilter(opt.value)}
-              className={`px-4 py-2 rounded-xl text-xs font-mono tracking-wider uppercase transition-all ${
+              className={`px-3.5 sm:px-4 py-2 rounded-xl text-xs font-mono tracking-wider uppercase whitespace-nowrap transition-all flex-shrink-0 ${
                 selectedFilter === opt.value
                   ? 'bg-ez-neon text-ez-bg font-bold shadow-neon'
                   : 'glass-panel text-ez-muted hover:text-ez-text hover:border-ez-neon/40'
@@ -74,7 +74,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) 
             >
               <div>
                 {/* Project Image & Overlay */}
-                <div className="relative h-60 sm:h-72 w-full overflow-hidden bg-[#0d1417]">
+                <div className="relative h-48 sm:h-64 md:h-72 w-full overflow-hidden bg-[#0d1417]">
                   <img
                     src={project.image_display}
                     alt={project.title}

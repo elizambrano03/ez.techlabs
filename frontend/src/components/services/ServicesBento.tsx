@@ -9,7 +9,9 @@ import {
   Palette, 
   CheckCircle2, 
   ArrowUpRight,
-  MessageSquare
+  MessageSquare,
+  Clock,
+  Zap
 } from 'lucide-react';
 import type { ServiceItem, SiteConfig } from '../../types';
 import { TiltCard } from '../ui/TiltCard';
@@ -20,400 +22,434 @@ interface ServicesBentoProps {
 }
 
 export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }) => {
-  const packPro = services.find((s) => s.is_pack_pro) || services.find((s) => s.slug === 'pack-perfil-pro');
-  const otherServices = services.filter((s) => !s.is_pack_pro);
+  // Find services by slug or fallback
+  const webService = services.find((s) => s.slug === 'paginas-web-y-landing-pages') || services[0];
+  const catalogService = services.find((s) => s.slug === 'catalogos-digitales-whatsapp') || services[1];
+  const softwareService = services.find((s) => s.slug === 'software-a-medida-python') || services[3];
+  const dataService = services.find((s) => s.slug === 'bases-de-datos-automatizacion') || services[4];
+  const serverService = services.find((s) => s.slug === 'soporte-tecnico-redes-servidores') || services[5];
+  const brandingService = services.find((s) => s.slug === 'marketing-diseno-de-marca') || services[6];
+  const packProService = services.find((s) => s.is_pack_pro || s.slug === 'pack-perfil-pro') || services[2];
 
   const getWhatsAppServiceUrl = (serviceTitle: string, price?: string) => {
     const text = `Hola EZ Techlabs, me interesa cotizar el servicio: ${serviceTitle}${price ? ` (${price})` : ''}. Vengo desde su página web.`;
     return `https://wa.me/${config.whatsapp_raw}?text=${encodeURIComponent(text)}`;
   };
 
+  // Flagship deliverables for the Web & Landing Page engineering spotlight
+  const webDeliverables = [
+    { title: "Diseño 100% exclusivo a medida", desc: "Arquitectura en React y Tailwind CSS, cero plantillas genéricas ni páginas lentas." },
+    { title: "Carga ultra rápida (< 1 segundo)", desc: "Optimización de Core Web Vitals (Puntuación 95+) para retener clientes." },
+    { title: "Flujo de conversión a WhatsApp", desc: "Botones inteligentes y checkout directo a tu chat con mensaje estructurado." },
+    { title: "SEO local y metadatos sociales", desc: "Indexación para Google y Open Graph optimizado para compartir en redes." },
+    { title: "Dominio, Hosting y SSL incluidos", desc: "Despliegue en servidores seguros de alta disponibilidad con monitoreo continuo." }
+  ];
+
   return (
-    <section id="servicios" className="py-24 bg-ez-bg relative overflow-hidden">
+    <section id="servicios" className="py-16 sm:py-24 bg-ez-bg relative overflow-hidden">
       {/* Structural background lines */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header with Editorial Asymmetry */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-ez-border">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 pb-6 border-b border-ez-border">
           <div className="max-w-2xl">
             <div className="flex items-center space-x-2 text-xs font-mono text-ez-neon uppercase tracking-wider mb-3">
               <span className="w-2 h-2 rounded-full bg-ez-neon"></span>
               <span>SERVICIOS & ARQUITECTURA DIGITAL</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight">
               Ingeniería a medida pensada para <span className="text-ez-neon">vender</span>.
             </h2>
           </div>
-          <p className="mt-4 md:mt-0 text-sm font-mono text-ez-muted max-w-sm">
-            [SYS-CATALOG: 07 SOLUCIONES ACTIVAS]
+          <p className="mt-4 md:mt-0 text-xs sm:text-sm font-mono text-ez-muted max-w-sm">
+            [SYS-CATALOG: SOLUCIONES DIGITALES ACTIVAS]
             <br />
             Construcción sin plantillas genéricas. Despliegue rápido y código limpio.
           </p>
         </div>
 
-        {/* Bento Grid Layout - Asymmetric Spans */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
 
-          {/* SPOTLIGHT: PACK PERFIL PRO ($15) — Spans 7 columns on Desktop for Maximum Dominance */}
-          {packPro && (
-            <TiltCard 
-              id="pack-pro"
-              className="lg:col-span-7 rounded-2xl glass-panel-glow p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group"
-            >
-              {/* Neon Accent Glow */}
-              <div className="absolute -top-24 -right-24 w-60 h-60 bg-ez-neon/15 blur-3xl rounded-full pointer-events-none"></div>
+          {/* SPOTLIGHT HERO: PÁGINAS WEB & LANDINGS DE ALTA CONVERSIÓN (7 cols Desktop) */}
+          <TiltCard 
+            id="servicios-destacado"
+            className="lg:col-span-7 rounded-2xl glass-panel-glow p-5 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-ez-neon/40 shadow-neon"
+          >
+            {/* Neon Accent Glow */}
+            <div className="absolute -top-24 -right-24 w-60 h-60 bg-ez-neon/15 blur-3xl rounded-full pointer-events-none"></div>
 
-              <div>
-                {/* Header of Pack Pro Card */}
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 rounded-xl bg-ez-neon text-ez-bg flex items-center justify-center font-bold shadow-neon">
-                      <Sparkles className="w-6 h-6 fill-current" />
-                    </div>
-                    <div>
-                      <span className="inline-block px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-ez-neon/20 text-ez-neon border border-ez-neon/40 tracking-wider">
-                        {packPro.badge_text || 'PROMO ACTIVA: 15$'}
-                      </span>
-                      <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-ez-text mt-1">
-                        {packPro.title}
-                      </h3>
-                    </div>
+            <div>
+              {/* Header of Spotlight Card */}
+              <div className="flex flex-wrap items-start justify-between gap-3 mb-6">
+                <div className="flex items-start space-x-3.5">
+                  <div className="w-12 h-12 rounded-xl bg-ez-neon text-ez-bg flex items-center justify-center font-bold shadow-neon flex-shrink-0">
+                    <Globe className="w-6 h-6 stroke-[2.5]" />
                   </div>
-
-                  {/* Price Tag */}
-                  <div className="text-right">
-                    <span className="text-xs font-mono text-ez-muted block">INVERSIÓN ÚNICA</span>
-                    <span className="text-4xl font-display font-black text-ez-neon">
-                      {packPro.price_display}
+                  <div>
+                    <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-ez-neon/20 text-ez-neon border border-ez-neon/40 tracking-wider">
+                      <Sparkles className="w-3 h-3" />
+                      <span>SOLUCIÓN DESTACADA • ALTA CONVERSIÓN</span>
                     </span>
+                    <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-ez-text mt-1.5">
+                      Páginas Web & Landing Pages de Alto Rendimiento
+                    </h3>
                   </div>
                 </div>
 
-                <p className="text-ez-muted text-sm sm:text-base leading-relaxed mb-6">
-                  {packPro.short_description}
-                </p>
-
-                {/* 5 Specific Deliverables Listed Explicitly as Required */}
-                <div className="bg-[#0e1619] border border-ez-border/90 rounded-xl p-5 mb-6">
-                  <h4 className="text-xs font-mono text-ez-text uppercase tracking-wider mb-4 flex items-center space-x-2">
-                    <span className="w-1.5 h-1.5 bg-ez-neon rounded-full"></span>
-                    <span>LOS 5 ENTREGABLES INCLUIDOS EN EL PACK:</span>
-                  </h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-ez-text/90">
-                    <li className="flex items-start space-x-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-ez-neon flex-shrink-0 mt-0.5" />
-                      <span><strong>1. Ajuste del perfil</strong> y biografía con gancho de ventas</span>
-                    </li>
-                    <li className="flex items-start space-x-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-ez-neon flex-shrink-0 mt-0.5" />
-                      <span><strong>2. 5 portadas</strong> de historias destacadas en HD</span>
-                    </li>
-                    <li className="flex items-start space-x-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-ez-neon flex-shrink-0 mt-0.5" />
-                      <span><strong>3. 1 enlace directo</strong> personalizado a WhatsApp</span>
-                    </li>
-                    <li className="flex items-start space-x-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-ez-neon flex-shrink-0 mt-0.5" />
-                      <span><strong>4. 1 diseño promocional</strong> listo para publicar</span>
-                    </li>
-                    <li className="flex items-start space-x-2.5 sm:col-span-2">
-                      <CheckCircle2 className="w-4 h-4 text-ez-neon flex-shrink-0 mt-0.5" />
-                      <span><strong>5. Asesoría técnica y de imagen</strong> personalizada para tu negocio</span>
-                    </li>
-                  </ul>
+                {/* Price Tag */}
+                <div className="text-left sm:text-right mt-1 sm:mt-0">
+                  <span className="text-[11px] font-mono text-ez-muted block">INVERSIÓN TRANSPARENTE</span>
+                  <span className="text-2xl sm:text-3xl font-display font-black text-ez-neon">
+                    {webService?.price_display || 'Desde $120'}
+                  </span>
                 </div>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-4 border-t border-ez-border/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-xs font-mono text-ez-muted">
-                  ⚡ Entrega en 48 horas hábiles • Garantía EZ Techlabs
+              <p className="text-ez-muted text-sm sm:text-base leading-relaxed mb-6">
+                Sitios web rápidos, responsivos y con arquitectura orientada a convertir visitas en clientes potenciales. Diseñamos con estética técnica de vanguardia para posicionar tu marca con autoridad inmediata.
+              </p>
+
+              {/* 5 Deliverables Included in Web Solution */}
+              <div className="bg-[#0e1619] border border-ez-border/90 rounded-xl p-4 sm:p-5 mb-6">
+                <h4 className="text-xs font-mono text-ez-text uppercase tracking-wider mb-4 flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 bg-ez-neon rounded-full"></span>
+                  <span>5 ENTREGABLES CLAVE DE INGENIERÍA:</span>
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-ez-text/90">
+                  {webDeliverables.map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      className={`flex items-start space-x-2.5 ${idx === 4 ? 'sm:col-span-2' : ''}`}
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-ez-neon flex-shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-ez-text">{item.title}:</strong>{' '}
+                        <span className="text-ez-muted text-xs">{item.desc}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Action Footer */}
+            <div className="pt-4 border-t border-ez-border/60 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+              <div className="flex items-center space-x-2 text-xs font-mono text-ez-muted">
+                <Clock className="w-4 h-4 text-ez-neon flex-shrink-0" />
+                <span>Entrega desde 5 días hábiles • Garantía 50/50</span>
+              </div>
+              <a
+                href={getWhatsAppServiceUrl("Páginas Web y Landing Pages", webService?.price_display || "Desde $120")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-ez-neon text-ez-bg font-display font-bold text-xs uppercase tracking-wider hover:bg-ez-neon/90 shadow-neon transition-all"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Cotizar Página Web</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
+          </TiltCard>
+
+          {/* SERVICE 2: CATÁLOGOS DIGITALES CON WHATSAPP (5 cols Desktop) */}
+          <div className="lg:col-span-5 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <ShoppingCart className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
+                  ALTA CONVERSIÓN
                 </span>
-                <a
-                  href={getWhatsAppServiceUrl(packPro.title, packPro.price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-ez-neon text-ez-bg font-display font-bold text-xs uppercase tracking-wider hover:bg-ez-neon/90 shadow-neon transition-all"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Pedir Pack Pro por 15$</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </div>
-            </TiltCard>
-          )}
-
-          {/* SERVICE 2: CATÁLOGOS DIGITALES CON WHATSAPP — Spans 5 columns */}
-          {otherServices[1] && (
-            <div className="lg:col-span-5 rounded-2xl glass-panel p-6 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                    <ShoppingCart className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
-                    {otherServices[1].badge_text || 'ALTA CONVERSIÓN'}
-                  </span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-ez-text mb-2">
-                  {otherServices[1].title}
-                </h3>
-                <p className="text-sm text-ez-muted mb-4 leading-relaxed">
-                  {otherServices[1].short_description}
-                </p>
-
-                <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                  {otherServices[1].features.slice(0, 3).map((feat, i) => (
-                    <li key={i} className="flex items-center space-x-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
 
-              <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-                <span className="text-xs font-mono text-ez-muted">{otherServices[1].price_display}</span>
-                <a
-                  href={getWhatsAppServiceUrl(otherServices[1].title, otherServices[1].price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1"
-                >
-                  <span>Cotizar catálogo</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              <h3 className="text-xl sm:text-2xl font-display font-bold text-ez-text mb-2">
+                {catalogService?.title || 'Catálogos Digitales con Pedido por WhatsApp'}
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Permite que tus clientes elijan productos en una interfaz moderna y te envíen la orden detallada con cálculo de totales directamente a tu chat de WhatsApp.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0 mt-0.5" />
+                  <span>Panel autogestionable para actualizar fotos y precios</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0 mt-0.5" />
+                  <span>Generador de mensajes de orden listos para WhatsApp</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0 mt-0.5" />
+                  <span>Multimoneda: Bolívares (BCV), Dólares y Cripto/USDT</span>
+                </li>
+              </ul>
             </div>
-          )}
 
-          {/* SERVICE 1: PÁGINAS WEB & LANDINGS — Spans 4 columns */}
-          {otherServices[0] && (
-            <div className="lg:col-span-4 rounded-2xl glass-panel p-6 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                    <Globe className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono text-ez-muted">
-                    {otherServices[0].badge_text || 'WEB'}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-display font-bold text-ez-text mb-2">
-                  {otherServices[0].title}
-                </h3>
-                <p className="text-sm text-ez-muted mb-4">
-                  {otherServices[0].short_description}
-                </p>
-
-                <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                  {otherServices[0].features.slice(0, 3).map((feat, i) => (
-                    <li key={i} className="flex items-center space-x-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-                <span className="text-xs font-mono text-ez-muted">{otherServices[0].price_display}</span>
-                <a
-                  href={getWhatsAppServiceUrl(otherServices[0].title, otherServices[0].price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1"
-                >
-                  <span>Cotizar web</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">{catalogService?.price_display || 'Desde $180'}</span>
+              <a
+                href={getWhatsAppServiceUrl(catalogService?.title || "Catálogo Digital WhatsApp", catalogService?.price_display || "Desde $180")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Cotizar catálogo</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
             </div>
-          )}
+          </div>
 
-          {/* SERVICE 3: PYTHON & SOFTWARE A MEDIDA — Spans 4 columns */}
-          {otherServices[2] && (
-            <div className="lg:col-span-4 rounded-2xl glass-panel p-6 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                    <Code className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono text-ez-muted">
-                    {otherServices[2].badge_text || 'PYTHON'}
-                  </span>
+          {/* SERVICE 3: PYTHON & SOFTWARE A MEDIDA (4 cols Desktop) */}
+          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <Code className="w-5 h-5" />
                 </div>
-
-                <h3 className="text-xl font-display font-bold text-ez-text mb-2">
-                  {otherServices[2].title}
-                </h3>
-                <p className="text-sm text-ez-muted mb-4">
-                  {otherServices[2].short_description}
-                </p>
-
-                <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                  {otherServices[2].features.slice(0, 3).map((feat, i) => (
-                    <li key={i} className="flex items-center space-x-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-xs font-mono text-ez-muted">INGENIERÍA</span>
               </div>
 
-              <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-                <span className="text-xs font-mono text-ez-muted">{otherServices[2].price_display}</span>
-                <a
-                  href={getWhatsAppServiceUrl(otherServices[2].title, otherServices[2].price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1"
-                >
-                  <span>Consultar software</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              <h3 className="text-lg sm:text-xl font-display font-bold text-ez-text mb-2">
+                {softwareService?.title || 'Python & Software a Medida'}
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Sistemas web internos, módulos administrativos y lógica personalizada desarrollada con Python 3.12 y Django para optimizar tus operaciones.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Paneles con roles y permisos de acceso</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Módulos de facturación, inventario y reportes</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>APIs REST seguras y de alto rendimiento</span>
+                </li>
+              </ul>
             </div>
-          )}
 
-          {/* SERVICE 4: BASES DE DATOS & AUTOMATIZACIÓN — Spans 4 columns */}
-          {otherServices[3] && (
-            <div className="lg:col-span-4 rounded-2xl glass-panel p-6 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                    <Database className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono text-ez-muted">
-                    {otherServices[3].badge_text || 'DATA'}
-                  </span>
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">{softwareService?.price_display || 'A tu medida'}</span>
+              <a
+                href={getWhatsAppServiceUrl(softwareService?.title || "Software a Medida")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Consultar</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICE 4: BASES DE DATOS & AUTOMATIZACIÓN (4 cols Desktop) */}
+          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <Database className="w-5 h-5" />
                 </div>
-
-                <h3 className="text-xl font-display font-bold text-ez-text mb-2">
-                  {otherServices[3].title}
-                </h3>
-                <p className="text-sm text-ez-muted mb-4">
-                  {otherServices[3].short_description}
-                </p>
-
-                <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                  {otherServices[3].features.slice(0, 3).map((feat, i) => (
-                    <li key={i} className="flex items-center space-x-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-xs font-mono text-ez-muted">DATA & SQL</span>
               </div>
 
-              <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-                <span className="text-xs font-mono text-ez-muted">{otherServices[3].price_display}</span>
-                <a
-                  href={getWhatsAppServiceUrl(otherServices[3].title, otherServices[3].price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1"
-                >
-                  <span>Automatizar flujo</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              <h3 className="text-lg sm:text-xl font-display font-bold text-ez-text mb-2">
+                {dataService?.title || 'Bases de Datos & Automatización'}
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Conexión entre aplicaciones, optimización de consultas en PostgreSQL y eliminación de tareas manuales repetitivas mediante scripts automatizados.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Sincronización de datos e inventarios</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Ejecución de tareas periódicas y cron jobs</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Diseño e indexación SQL de alta velocidad</span>
+                </li>
+              </ul>
             </div>
-          )}
 
-          {/* SERVICE 5: SOPORTE, REDES Y SERVIDORES (ZULIA) — Spans 6 columns */}
-          {otherServices[4] && (
-            <div className="lg:col-span-6 rounded-2xl glass-panel p-6 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                    <Server className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
-                    PRESENCIAL EN ZULIA
-                  </span>
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">{dataService?.price_display || 'A tu medida'}</span>
+              <a
+                href={getWhatsAppServiceUrl(dataService?.title || "Bases de Datos & Automatización")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Automatizar</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICE 5: SOPORTE TÉCNICO, REDES & SERVIDORES (4 cols Desktop) */}
+          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <Server className="w-5 h-5" />
                 </div>
-
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-ez-text mb-2">
-                  {otherServices[4].title}
-                </h3>
-                <p className="text-sm text-ez-muted mb-4">
-                  {otherServices[4].short_description}
-                </p>
-
-                <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                  {otherServices[4].features.map((feat, i) => (
-                    <li key={i} className="flex items-center space-x-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
+                  PRESENCIAL EN ZULIA
+                </span>
               </div>
 
-              <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-                <span className="text-xs font-mono text-ez-muted">{otherServices[4].price_display}</span>
-                <a
-                  href={getWhatsAppServiceUrl(otherServices[4].title, otherServices[4].price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1"
-                >
-                  <span>Solicitar soporte</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              <h3 className="text-lg sm:text-xl font-display font-bold text-ez-text mb-2">
+                {serverService?.title || 'Soporte Técnico, Redes & Servidores'}
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Mantenimiento de infraestructura, hardening de Linux, Docker, respaldos automáticos y asistencia técnica presencial en Maracaibo y el Zulia.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Asistencia presencial directa en Maracaibo/Zulia</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Servidores Linux, Docker y copias de seguridad</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Monitoreo 24/7 y respuesta ante incidencias</span>
+                </li>
+              </ul>
             </div>
-          )}
 
-          {/* SERVICE 6: MARKETING & DISEÑO DE MARCA — Spans 6 columns */}
-          {otherServices[5] && (
-            <div className="lg:col-span-6 rounded-2xl glass-panel p-6 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                    <Palette className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono text-ez-muted">
-                    {otherServices[5].badge_text || 'BRANDING'}
-                  </span>
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">{serverService?.price_display || 'Planes & Soporte'}</span>
+              <a
+                href={getWhatsAppServiceUrl(serverService?.title || "Soporte Técnico y Servidores")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Solicitar soporte</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICE 6: MARKETING & DISEÑO DE MARCA (6 cols Desktop) */}
+          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <Palette className="w-5 h-5" />
                 </div>
-
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-ez-text mb-2">
-                  {otherServices[5].title}
-                </h3>
-                <p className="text-sm text-ez-muted mb-4">
-                  {otherServices[5].short_description}
-                </p>
-
-                <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                  {otherServices[5].features.map((feat, i) => (
-                    <li key={i} className="flex items-center space-x-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-xs font-mono text-ez-muted">IDENTIDAD VISUAL</span>
               </div>
 
-              <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-                <span className="text-xs font-mono text-ez-muted">{otherServices[5].price_display}</span>
-                <a
-                  href={getWhatsAppServiceUrl(otherServices[5].title, otherServices[5].price_display)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1"
-                >
-                  <span>Cotizar diseño</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+              <h3 className="text-xl font-display font-bold text-ez-text mb-2">
+                {brandingService?.title || 'Marketing & Diseño de Marca'}
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Dale a tu negocio una imagen que transmita confianza inmediata. Diseñamos logotipos vectoriales, manuales de marca y piezas gráficas para destacar en el mercado.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Diseño y vectorización de logotipos</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Kits de marca y paletas de color con alto contraste</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Material para redes sociales y piezas publicitarias</span>
+                </li>
+              </ul>
             </div>
-          )}
+
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">{brandingService?.price_display || 'Desde $40'}</span>
+              <a
+                href={getWhatsAppServiceUrl(brandingService?.title || "Diseño de Marca y Marketing")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Cotizar diseño</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICE 7: PACK PERFIL PRO 15$ (6 cols Desktop) */}
+          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
+                  IMPULSO INICIAL 15$
+                </span>
+              </div>
+
+              <div className="flex items-baseline justify-between mb-2">
+                <h3 className="text-xl font-display font-bold text-ez-text">
+                  {packProService?.title || 'Pack Perfil Pro ($15)'}
+                </h3>
+                <span className="text-xl font-display font-extrabold text-ez-neon">
+                  {packProService?.price_display || '15$'}
+                </span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Optimización rápida de tu Instagram comercial para generar confianza y captar mensajes de WhatsApp en 48 horas con una mínima inversión.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>Ajuste estratégico de biografía y gancho de ventas</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>5 portadas para historias destacadas en HD</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>1 enlace directo a WhatsApp y 1 post promocional</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <div className="flex items-center space-x-1.5 text-xs font-mono text-ez-muted">
+                <Zap className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                <span>Entrega en 48h hábiles</span>
+              </div>
+              <a
+                href={getWhatsAppServiceUrl(packProService?.title || "Pack Perfil Pro", "15$")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Pedir pack</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
 
         </div>
 

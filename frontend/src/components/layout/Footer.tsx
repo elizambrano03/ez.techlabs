@@ -56,8 +56,8 @@ export const Footer: React.FC<FooterProps> = ({ config }) => {
                 </a>
               </li>
               <li>
-                <a href="#pack-pro" className="hover:text-ez-neon transition-colors text-ez-neon font-bold">
-                  Pack Perfil Pro ($15)
+                <a href="#servicios-destacado" className="hover:text-ez-neon transition-colors text-ez-neon font-bold">
+                  Páginas Web & Landing Pages
                 </a>
               </li>
               <li>

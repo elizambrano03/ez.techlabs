@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ config }) => {
 
   const navLinks = [
     { label: 'Servicios', href: '#servicios' },
-    { label: 'Pack Pro 15$', href: '#pack-pro', highlight: true },
+    { label: 'Páginas Web', href: '#servicios-destacado', highlight: true },
     { label: 'Proceso & Garantía', href: '#proceso' },
     { label: 'Portafolio', href: '#portafolio' },
     { label: 'Preguntas', href: '#faq' },
@@ -104,10 +104,10 @@ export const Navbar: React.FC<NavbarProps> = ({ config }) => {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 p-4 rounded-xl bg-ez-panel border border-ez-border shadow-2xl animate-in fade-in duration-200">
-            <div className="flex flex-col space-y-2.5">
+          <div className="lg:hidden mt-3 p-5 rounded-2xl bg-[#0e1619]/98 backdrop-blur-xl border border-ez-border shadow-2xl animate-in fade-in duration-200">
+            <div className="flex flex-col space-y-2">
               <div className="flex items-center space-x-2 pb-3 mb-1 border-b border-ez-border/60 text-[11px] font-mono text-ez-muted">
-                <span className="h-2 w-2 rounded-full bg-ez-neon"></span>
+                <span className="h-2 w-2 rounded-full bg-ez-neon animate-pulse"></span>
                 <span>{config.system_status_text}</span>
               </div>
               {navLinks.map((link) => (
@@ -115,9 +115,9 @@ export const Navbar: React.FC<NavbarProps> = ({ config }) => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3 py-2 rounded-lg text-sm font-mono tracking-wider transition-colors ${
+                  className={`px-4 py-3 rounded-xl text-sm font-mono tracking-wider transition-colors min-h-[44px] flex items-center ${
                     link.highlight
-                      ? 'bg-ez-neon text-ez-bg font-bold'
+                      ? 'bg-ez-neon text-ez-bg font-bold shadow-neon'
                       : 'text-ez-text hover:text-ez-neon hover:bg-white/5'
                   }`}
                 >
@@ -129,9 +129,9 @@ export const Navbar: React.FC<NavbarProps> = ({ config }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-2 w-full py-2.5 px-4 rounded-lg bg-ez-neon text-ez-bg text-center text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center space-x-2"
+                className="mt-3 w-full py-3.5 px-4 rounded-xl bg-ez-neon text-ez-bg text-center text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center space-x-2 shadow-neon min-h-[44px]"
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4 fill-current" />
                 <span>Hablar por WhatsApp</span>
               </a>
             </div>

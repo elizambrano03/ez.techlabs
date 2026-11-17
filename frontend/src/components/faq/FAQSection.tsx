@@ -17,16 +17,16 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ faqs, config }) => {
   const whatsappUrl = `https://wa.me/${config.whatsapp_raw}?text=${encodeURIComponent('Hola EZ Techlabs, tengo una duda antes de cotizar mi proyecto.')}`;
 
   return (
-    <section id="faq" className="py-24 bg-[#090e10] border-t border-ez-border relative">
+    <section id="faq" className="py-16 sm:py-24 bg-[#090e10] border-t border-ez-border relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-ez-panel border border-ez-border text-xs font-mono text-ez-neon uppercase tracking-wider mb-4">
             <HelpCircle className="w-3.5 h-3.5 text-ez-neon" />
             <span>CLARIDAD & CONDICIONES</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight mb-4">
             Preguntas <span className="text-ez-neon">frecuentes</span>.
           </h2>
           <p className="text-ez-muted text-sm sm:text-base max-w-xl mx-auto">

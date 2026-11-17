@@ -37,16 +37,16 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ config }) => {
   const whatsappUrl = `https://wa.me/${config.whatsapp_raw}?text=${encodeURIComponent('Hola EZ Techlabs, quiero comenzar el proceso de desarrollo en 3 pasos para mi negocio.')}`;
 
   return (
-    <section id="proceso" className="py-24 bg-[#090e10] border-y border-ez-border relative">
+    <section id="proceso" className="py-16 sm:py-24 bg-[#090e10] border-y border-ez-border relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-ez-panel border border-ez-border text-xs font-mono text-ez-neon uppercase tracking-wider mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
             <span>METODOLOGÍA TRANSPARENTE</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-ez-text tracking-tight mb-4">
             Proceso en 3 pasos simples.
           </h2>
           <p className="text-ez-muted text-base">
@@ -99,7 +99,7 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ config }) => {
         </div>
 
         {/* COMPROMISO 50/50 & COBERTURA REGIONAL CALLOUT */}
-        <div className="rounded-2xl glass-panel-glow p-8 sm:p-10 border border-ez-neon/30 relative overflow-hidden">
+        <div className="rounded-2xl glass-panel-glow p-5 sm:p-10 border border-ez-neon/30 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left side: 50/50 Trust Commitment (7 cols) */}

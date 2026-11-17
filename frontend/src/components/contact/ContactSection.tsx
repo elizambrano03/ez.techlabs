@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, MessageSquare, MapPin, Phone, Clock, ArrowUpRight } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, MessageSquare, MapPin, Phone, Clock, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { InstagramIcon } from '../ui/InstagramIcon';
 import type { SiteConfig, LeadSubmission } from '../../types';
 import { api } from '../../services/api';
@@ -14,8 +14,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
     business_name: '',
     email: '',
     phone: '',
-    service_interest: 'PACK_PRO',
-    budget_range: '$15 - $200',
+    service_interest: 'WEB',
+    budget_range: '$100 - $300',
     message: '',
     honey_trap: '', // Anti-spam trap
   });
@@ -61,7 +61,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
   )}`;
 
   return (
-    <section id="contacto" className="py-24 bg-ez-bg relative overflow-hidden">
+    <section id="contacto" className="py-16 sm:py-24 bg-ez-bg relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -221,7 +221,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       value={formData.full_name}
                       onChange={handleChange}
                       placeholder="Ej: Carlos Mendoza"
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     />
                   </div>
 
@@ -236,7 +236,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       value={formData.business_name}
                       onChange={handleChange}
                       placeholder="Ej: Inversiones El Lago"
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     />
                   </div>
                 </div>
@@ -254,7 +254,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="carlos@gmail.com"
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     />
                   </div>
 
@@ -270,7 +270,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+58 414 123 4567"
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     />
                   </div>
                 </div>
@@ -285,11 +285,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       name="service_interest"
                       value={formData.service_interest}
                       onChange={handleChange}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     >
-                      <option value="PACK_PRO">Pack Perfil Pro ($15)</option>
-                      <option value="CATALOG">Catálogo Digital con WhatsApp</option>
                       <option value="WEB">Página Web o Landing Page</option>
+                      <option value="CATALOG">Catálogo Digital con WhatsApp</option>
+                      <option value="PACK_PRO">Pack Perfil Pro ($15)</option>
                       <option value="SOFTWARE">Software a Medida / Python</option>
                       <option value="DATABASE">Bases de Datos & Automatización</option>
                       <option value="MARKETING">Marketing & Identidad Visual</option>
@@ -306,10 +306,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       name="budget_range"
                       value={formData.budget_range}
                       onChange={handleChange}
-                      className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     >
-                      <option value="15$">15$ (Pack Perfil Pro)</option>
                       <option value="$100 - $300">$100 - $300 (Web / Catálogo)</option>
+                      <option value="15$">15$ (Pack Perfil Pro)</option>
                       <option value="$300 - $800">$300 - $800 (Sistema a Medida)</option>
                       <option value="+$800">+$800 (Plataforma Completa)</option>
                       <option value="Por definir">Por definir / Asesoría previa</option>
@@ -329,7 +329,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Cuéntanos brevemente sobre tu negocio, qué productos o servicios ofreces y qué objetivo quieres lograr..."
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text placeholder-ez-muted/40 text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                   ></textarea>
                 </div>
 
@@ -355,9 +355,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                   </a>
                 </div>
 
-                <p className="text-[11px] font-mono text-ez-muted text-center pt-2">
-                  🔒 Tus datos están protegidos y nunca serán compartidos con terceros.
-                </p>
+                <div className="text-[11px] font-mono text-ez-muted text-center pt-2 flex items-center justify-center space-x-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>Tus datos están protegidos bajo estricta confidencialidad. Cero spam.</span>
+                </div>
 
               </form>
 
