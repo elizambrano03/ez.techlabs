@@ -8,8 +8,8 @@ interface ContactSectionProps {
   config: SiteConfig;
 }
 
-// Endpoint de Formspree: se lee de variable de entorno o fallback
-const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || '';
+// Endpoint de Formspree oficial de EZ Techlabs
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || 'mjywwbqg';
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
   const [formData, setFormData] = useState<LeadSubmission>({
