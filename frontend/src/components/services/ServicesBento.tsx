@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import type { ServiceItem, SiteConfig } from '../../types';
 import { TiltCard } from '../ui/TiltCard';
+import { ScrollReveal3D } from '../ui/ScrollReveal3D';
 
 interface ServicesBentoProps {
   services: ServiceItem[];
@@ -68,6 +69,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6">
 
           {/* SPOTLIGHT HERO: PÁGINAS WEB & LANDINGS DE ALTA CONVERSIÓN (7 cols Desktop) */}
+          <ScrollReveal3D direction="up" delay={0} duration={0.75} depth={50} className="lg:col-span-7">
           <TiltCard 
             id="servicios-destacado"
             className="lg:col-span-7 rounded-2xl glass-panel-glow p-5 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-ez-neon/40 shadow-neon"
@@ -147,9 +149,11 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </TiltCard>
+          </ScrollReveal3D>
 
           {/* SERVICE 2: CATÁLOGOS DIGITALES CON WHATSAPP (5 cols Desktop) */}
-          <div className="lg:col-span-5 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          <ScrollReveal3D direction="right" delay={0.1} duration={0.7} depth={40} className="lg:col-span-5">
+          <div className="h-full rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -196,9 +200,11 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </div>
+          </ScrollReveal3D>
 
           {/* SERVICE 3: PYTHON & SOFTWARE A MEDIDA (4 cols Desktop) */}
-          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          <ScrollReveal3D direction="up" delay={0.15} duration={0.7} depth={40} className="lg:col-span-4">
+          <div className="h-full rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -243,9 +249,11 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </div>
+          </ScrollReveal3D>
 
           {/* SERVICE 4: EXPORTACIÓN & DOCUMENTOS CON PYTHON (4 cols Desktop) */}
-          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          <ScrollReveal3D direction="up" delay={0.2} duration={0.7} depth={40} className="lg:col-span-4">
+          <div className="h-full rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -292,9 +300,11 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </div>
+          </ScrollReveal3D>
 
           {/* SERVICE 5: BASES DE DATOS & AUTOMATIZACIÓN (4 cols Desktop) */}
-          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          <ScrollReveal3D direction="up" delay={0.25} duration={0.7} depth={40} className="lg:col-span-4">
+          <div className="h-full rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -339,9 +349,11 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </div>
+          </ScrollReveal3D>
 
           {/* SERVICE 6: CONSULTORÍA & ASESORÍA TECNOLÓGICA (6 cols Desktop) */}
-          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          <ScrollReveal3D direction="up" delay={0.1} duration={0.7} depth={40} className="lg:col-span-6">
+          <div className="h-full rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -388,9 +400,11 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </div>
+          </ScrollReveal3D>
 
           {/* SERVICE 7: SOPORTE TÉCNICO, REDES & SERVIDORES (6 cols Desktop) */}
-          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          <ScrollReveal3D direction="up" delay={0.15} duration={0.7} depth={40} className="lg:col-span-6">
+          <div className="h-full rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -440,6 +454,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               </a>
             </div>
           </div>
+          </ScrollReveal3D>
 
         </div>
 

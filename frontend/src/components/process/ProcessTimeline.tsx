@@ -1,6 +1,8 @@
 import React from 'react';
 import { MessageSquare, Layers, Rocket, ShieldCheck, MapPin, ArrowRight } from 'lucide-react';
 import type { SiteConfig } from '../../types';
+import { TiltCard } from '../ui/TiltCard';
+import { ScrollReveal3D } from '../ui/ScrollReveal3D';
 
 interface ProcessTimelineProps {
   config: SiteConfig;
@@ -59,41 +61,51 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ config }) => {
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <div
+              <ScrollReveal3D 
                 key={step.number}
-                className="relative rounded-2xl glass-panel p-8 flex flex-col justify-between border border-ez-border hover:border-ez-neon/40 transition-all duration-300 group"
+                direction="up"
+                delay={idx * 0.15}
+                duration={0.7}
+                depth={45}
+                className="h-full"
               >
-                {/* Step Number Watermark */}
-                <span className="absolute top-4 right-6 text-5xl font-display font-black text-white/5 select-none group-hover:text-ez-neon/10 transition-colors">
-                  {step.number}
-                </span>
-
-                <div>
-                  <div className="flex items-center space-x-3 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="text-[11px] font-mono tracking-wider uppercase text-ez-neon px-2.5 py-0.5 rounded bg-ez-neon/10 border border-ez-neon/20">
-                      {step.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-display font-bold text-ez-text mb-1">
-                    {step.title}
-                  </h3>
-                  <span className="text-xs font-mono text-ez-neon block mb-4">
-                    {step.subtitle}
+                <TiltCard
+                  maxTilt={8}
+                  glareIntensity={0.12}
+                  className="h-full relative rounded-2xl glass-panel p-8 flex flex-col justify-between border border-ez-border hover:border-ez-neon/40 transition-all duration-300 group"
+                >
+                  {/* Step Number Watermark */}
+                  <span className="absolute top-4 right-6 text-5xl font-display font-black text-white/5 select-none group-hover:text-ez-neon/10 transition-colors">
+                    {step.number}
                   </span>
 
-                  <p className="text-sm text-ez-muted leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                  <div>
+                    <div className="flex items-center space-x-3 mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-[11px] font-mono tracking-wider uppercase text-ez-neon px-2.5 py-0.5 rounded bg-ez-neon/10 border border-ez-neon/20">
+                        {step.tag}
+                      </span>
+                    </div>
 
-                <div className="mt-8 pt-4 border-t border-ez-border/60 flex items-center text-xs font-mono text-ez-text/60">
-                  <span>Paso {idx + 1} de 3</span>
-                </div>
-              </div>
+                    <h3 className="text-2xl font-display font-bold text-ez-text mb-1">
+                      {step.title}
+                    </h3>
+                    <span className="text-xs font-mono text-ez-neon block mb-4">
+                      {step.subtitle}
+                    </span>
+
+                    <p className="text-sm text-ez-muted leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-4 border-t border-ez-border/60 flex items-center text-xs font-mono text-ez-text/60">
+                    <span>Paso {idx + 1} de 3</span>
+                  </div>
+                </TiltCard>
+              </ScrollReveal3D>
             );
           })}
         </div>

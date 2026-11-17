@@ -44,8 +44,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
         business_name: '',
         email: '',
         phone: '',
-        service_interest: 'PACK_PRO',
-        budget_range: '$15 - $200',
+        service_interest: 'WEB',
+        budget_range: 'Por definir',
         message: '',
         honey_trap: '',
       });

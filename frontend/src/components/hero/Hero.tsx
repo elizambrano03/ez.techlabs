@@ -4,6 +4,7 @@ import type { SiteConfig } from '../../types';
 import { TerminalSimulator } from './TerminalSimulator';
 import { HeroCanvas } from './HeroCanvas';
 import { MagneticButton } from '../ui/MagneticButton';
+import { TiltCard } from '../ui/TiltCard';
 
 interface HeroProps {
   config: SiteConfig;
@@ -113,13 +114,13 @@ export const Hero: React.FC<HeroProps> = ({ config }) => {
 
           {/* Right Column: Interactive Code Terminal (5 cols) */}
           <div className="lg:col-span-5 relative mt-4 lg:mt-0">
-            <div className="relative">
+            <TiltCard maxTilt={6} glareIntensity={0.12} className="relative rounded-2xl">
               {/* Corner tech accents */}
-              <div className="hidden sm:block absolute -top-3 -right-3 text-[10px] font-mono text-ez-neon/60">
+              <div className="hidden sm:block absolute -top-3 -right-3 text-[10px] font-mono text-ez-neon/60 z-20">
                 [EZ-SYS: ACTIVE]
               </div>
               <TerminalSimulator />
-            </div>
+            </TiltCard>
           </div>
 
         </div>

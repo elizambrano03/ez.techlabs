@@ -11,6 +11,8 @@ import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { FloatingWhatsApp } from './components/layout/FloatingWhatsApp';
 import { CustomCursor } from './components/ui/CustomCursor';
+import { ScrollReveal3D } from './components/ui/ScrollReveal3D';
+import { CyberScanline, CyberNoise } from './components/ui/CyberEffects';
 
 export const App: React.FC = () => {
   const [config, setConfig] = useState<SiteConfig>(fallbackConfig);
@@ -38,6 +40,10 @@ export const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-ez-bg text-ez-text flex flex-col font-sans selection:bg-ez-neon selection:text-ez-bg">
+      {/* ── Efectos globales de ambiente ── */}
+      <CyberNoise />
+      <CyberScanline />
+
       {/* Custom Reactive Cursor (Desktop only) */}
       <CustomCursor />
 
@@ -46,29 +52,41 @@ export const App: React.FC = () => {
 
       {/* Main Content Layout */}
       <main className="flex-grow">
-        {/* Hero Section with Interactive Terminal */}
+        {/* Hero — sin ScrollReveal (ya tiene animaciones propias) */}
         <Hero config={config} />
 
         {/* Technical Stack Marquee */}
-        <TechMarquee />
+        <ScrollReveal3D direction="up" delay={0} duration={0.6}>
+          <TechMarquee />
+        </ScrollReveal3D>
 
         {/* Services Bento Grid */}
-        <ServicesBento services={services} config={config} />
+        <ScrollReveal3D direction="up" delay={0.05} duration={0.8} depth={60}>
+          <ServicesBento services={services} config={config} />
+        </ScrollReveal3D>
 
-        {/* Process in 3 Steps + 50/50 Commitment + Zulia Coverage */}
-        <ProcessTimeline config={config} />
+        {/* Process in 3 Steps */}
+        <ScrollReveal3D direction="left" delay={0.05} duration={0.75} depth={50}>
+          <ProcessTimeline config={config} />
+        </ScrollReveal3D>
 
         {/* FAQs Section */}
-        <FAQSection faqs={faqs} config={config} />
+        <ScrollReveal3D direction="right" delay={0.05} duration={0.75} depth={50}>
+          <FAQSection faqs={faqs} config={config} />
+        </ScrollReveal3D>
 
-        {/* Direct Contact & Lead Capture Form */}
-        <ContactSection config={config} />
+        {/* Contact */}
+        <ScrollReveal3D direction="up" delay={0.05} duration={0.8} depth={60}>
+          <ContactSection config={config} />
+        </ScrollReveal3D>
       </main>
 
       {/* Editorial Footer */}
-      <Footer config={config} />
+      <ScrollReveal3D direction="up" delay={0} duration={0.6}>
+        <Footer config={config} />
+      </ScrollReveal3D>
 
-      {/* Floating Action WhatsApp with Radar Indicator */}
+      {/* Floating Action WhatsApp */}
       <FloatingWhatsApp config={config} />
     </div>
   );
