@@ -53,7 +53,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 pb-6 border-b border-ez-border">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <div className="flex items-center space-x-2 text-xs font-mono text-ez-neon uppercase tracking-wider mb-3">
               <span className="w-2 h-2 rounded-full bg-ez-neon"></span>
               <span>SERVICIOS & ARQUITECTURA DIGITAL</span>
@@ -62,11 +62,6 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
               Ingeniería a medida pensada para <span className="text-ez-neon">vender</span>.
             </h2>
           </div>
-          <p className="mt-4 md:mt-0 text-xs sm:text-sm font-mono text-ez-muted max-w-sm">
-            [SYS-CATALOG: SOLUCIONES DIGITALES ACTIVAS]
-            <br />
-            Construcción sin plantillas genéricas. Despliegue rápido y código limpio.
-          </p>
         </div>
 
         {/* Bento Grid Layout */}
