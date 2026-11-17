@@ -326,7 +326,10 @@ export const api = {
       }
       return json;
     } catch (err: any) {
-      throw new Error(err.message || "Error al enviar formulario");
+      if (err.name === 'TypeError' || err.message === 'Failed to fetch') {
+        throw new Error("El servidor está respondiendo con demora. Por favor intenta de nuevo en unos segundos o escríbenos directamente a WhatsApp.");
+      }
+      throw new Error(err.message || "Error al procesar el formulario.");
     }
   }
 };

@@ -173,6 +173,9 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'https://ez-techlabs-ve.netlify.app',
 ]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https:\/\/.*\.netlify\.app$",
+]
 if os.getenv('FRONTEND_URL'):
     CORS_ALLOWED_ORIGINS.append(os.getenv('FRONTEND_URL').strip())
 

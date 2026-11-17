@@ -8,6 +8,9 @@ interface ContactSectionProps {
   config: SiteConfig;
 }
 
+// Endpoint de Formspree: se lee de variable de entorno o fallback
+const FORMSPREE_ID = import.meta.env.VITE_FORMSPREE_ID || '';
+
 export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
   const [formData, setFormData] = useState<LeadSubmission>({
     full_name: '',
@@ -40,35 +43,60 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
     const submissionSnapshot = { ...formData };
 
     try {
-      // 1. Guardar en Base de Datos PostgreSQL de EZ Techlabs
-      const res = await api.submitLead(formData);
+      let sentViaFormspree = false;
 
-      // 2. Disparo de notificación directa por correo a zambranoeli2010@gmail.com
+      // 1. Envío prioritario vía Formspree si está configurado
+      if (FORMSPREE_ID) {
+        try {
+          const formspreeRes = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.full_name,
+              business: formData.business_name || 'No especificado',
+              phone: formData.phone,
+              email: formData.email,
+              service: formData.service_interest,
+              scope: formData.budget_range,
+              message: formData.message,
+              _replyto: formData.email,
+              _subject: `🚀 Nueva Solicitud de Proyecto: ${formData.full_name} (${formData.business_name || 'Sin negocio'})`,
+            }),
+          });
+
+          if (formspreeRes.ok) {
+            sentViaFormspree = true;
+          } else {
+            const data = await formspreeRes.json().catch(() => ({}));
+            if (data.errors && data.errors.length > 0) {
+              throw new Error(data.errors.map((err: any) => err.message).join(', '));
+            }
+          }
+        } catch (fErr: any) {
+          console.warn('Formspree dispatch error:', fErr);
+          // Si falló con mensaje explícito de Formspree, relanzar
+          if (fErr.message && !fErr.message.includes('fetch')) {
+            throw fErr;
+          }
+        }
+      }
+
+      // 2. Guardado en base de datos PostgreSQL de EZ Techlabs
       try {
-        const targetEmail = config.contact_email || 'zambranoeli2010@gmail.com';
-        await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({
-            _subject: `🚀 Nueva Solicitud de Proyecto: ${formData.full_name} (${formData.business_name || 'Sin empresa'})`,
-            Nombre_Cliente: formData.full_name,
-            Empresa_Negocio: formData.business_name || 'No especificado',
-            Telefono_WhatsApp: formData.phone,
-            Email_Contacto: formData.email,
-            Servicio_Interes: formData.service_interest,
-            Alcance_Proyecto: formData.budget_range,
-            Mensaje_Detalles: formData.message,
-          }),
-        });
-      } catch (emailDispatchErr) {
-        console.warn('Email dispatch backup notice:', emailDispatchErr);
+        await api.submitLead(formData);
+      } catch (dbErr: any) {
+        console.warn('DB submission notice:', dbErr);
+        // Si no se envió por Formspree y la BD falló, reportar error amigable
+        if (!sentViaFormspree && !FORMSPREE_ID) {
+          throw new Error('El servidor está iniciando. Por favor intenta de nuevo en unos segundos o escríbenos directamente a WhatsApp.');
+        }
       }
 
       setLastSubmitted(submissionSnapshot);
-      setSuccessMsg(res.message || "¡Propuesta recibida con éxito! Tu proyecto fue registrado en nuestra base de datos.");
+      setSuccessMsg("¡Propuesta recibida con éxito! Tu solicitud fue registrada y te contactaremos en breve.");
       setFormData({
         full_name: '',
         business_name: '',
