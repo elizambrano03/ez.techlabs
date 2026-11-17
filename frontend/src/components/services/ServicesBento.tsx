@@ -419,13 +419,13 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 {serverService?.title || 'Soporte Técnico, Redes & Servidores'}
               </h3>
               <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
-                Mantenimiento de infraestructura tecnológica, hardening de servidores Linux, Docker, copias de seguridad automáticas y asistencia presencial en Maracaibo y el Zulia.
+                Mantenimiento de infraestructura tecnológica, hardening de servidores Linux, Docker, copias de seguridad automáticas y asistencia técnica presencial en el estado Zulia.
               </p>
 
               <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
-                  <span>Asistencia presencial directa en Maracaibo y estado Zulia</span>
+                  <span>Asistencia presencial directa en el estado Zulia</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />

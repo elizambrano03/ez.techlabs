@@ -34,14 +34,8 @@ class PageSEOSerializer(serializers.ModelSerializer):
             "priceRange": "$$",
             "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Maracaibo",
                 "addressRegion": "Zulia",
                 "addressCountry": "VE"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "10.6427",
-                "longitude": "-71.6125"
             },
             "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",

@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ config }) => {
             <div className="space-y-1.5 text-xs text-ez-text/70">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-3.5 h-3.5 text-ez-neon" />
-                <span>Maracaibo, Zulia [10.6427° N, 71.6125° W]</span>
+                <span>Estado Zulia, Venezuela</span>
               </div>
               <div className="flex items-center space-x-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-ez-neon" />

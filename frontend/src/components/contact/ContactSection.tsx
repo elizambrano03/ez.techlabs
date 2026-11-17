@@ -211,7 +211,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                 <div>
                   <span className="text-xs font-mono text-ez-muted block">SEDE Y ATENCIÓN PRESENCIAL</span>
                   <span className="text-xs sm:text-sm font-semibold text-ez-text block">
-                    Maracaibo, Estado Zulia, Venezuela
+                    Estado Zulia, Venezuela
                   </span>
                   <span className="text-[11px] font-mono text-ez-muted">
                     Atención remota activa para cualquier país

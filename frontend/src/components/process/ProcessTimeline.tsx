@@ -155,7 +155,7 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ config }) => {
                 <div className="flex items-start space-x-3">
                   <div className="w-2 h-2 rounded-full bg-ez-neon mt-1.5 flex-shrink-0"></div>
                   <div>
-                    <strong className="text-ez-text">Presencial:</strong> Exclusivo en el estado Zulia, Venezuela (reuniones en Maracaibo, San Francisco y zonas comerciales).
+                    <strong className="text-ez-text">Presencial:</strong> Exclusivo en el estado Zulia, Venezuela (reuniones presenciales para coordinar tu proyecto).
                   </div>
                 </div>
 

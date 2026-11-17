@@ -46,7 +46,7 @@ class SiteConfig(models.Model):
     )
     system_status_text = models.CharField(
         max_length=80,
-        default="OPERACIONAL 24/7 • MARACAIBO, VE"
+        default="OPERACIONAL 24/7 • ESTADO ZULIA, VE"
     )
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -23,9 +23,9 @@ print("[OK] Pipeline de documentos ejecutado en 0.04s. Cero fallas.")`;
 
   const orderJson = `{
   "origen": "Catalogo_Digital_EZ",
-  "cliente": "Inversiones Maracaibo C.A.",
+  "cliente": "Inversiones del Zulia C.A.",
   "contacto": "+58 414 604 0010",
-  "ubicacion": "Maracaibo, Estado Zulia",
+  "ubicacion": "Estado Zulia, Venezuela",
   "servicio": "Sitio Web Corporativo + Catálogo WhatsApp",
   "compromiso": "50% Anticipo / 50% Contra Entrega",
   "estado": "CONFIRMADO_Y_EN_PRODUCCION",
@@ -159,7 +159,7 @@ print("[OK] Pipeline de documentos ejecutado en 0.04s. Cero fallas.")`;
         </div>
         <div className="flex items-center space-x-3">
           <span>UTF-8</span>
-          <span className="text-ez-neon">MARACAIBO_NODE</span>
+          <span className="text-ez-neon">ZULIA_NODE</span>
         </div>
       </div>
 

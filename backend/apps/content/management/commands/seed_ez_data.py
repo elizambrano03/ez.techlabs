@@ -25,7 +25,7 @@ class Command(BaseCommand):
         config.coverage_summary = "Desarrollamos de forma remota para clientes globales y brindamos atención presencial exclusiva en el estado Zulia, Venezuela. Monitoreo y soporte técnico continuo 24/7."
         config.commitment_title = "Compromiso de Confianza 50 / 50"
         config.commitment_description = "Comenzamos tu proyecto con el 50% de anticipo para arrancar arquitectura y diseño, y el 50% restante solo se cancela cuando el trabajo esté culminado, revisado y listo para desplegar."
-        config.system_status_text = "OPERACIONAL 24/7 • MARACAIBO, VE"
+        config.system_status_text = "OPERACIONAL 24/7 • ESTADO ZULIA, VE"
         config.save()
         self.stdout.write(self.style.SUCCESS("✓ SiteConfig guardado con éxito."))
 
@@ -125,7 +125,7 @@ class Command(BaseCommand):
                 "title": "Soporte Técnico, Redes & Servidores",
                 "slug": "soporte-tecnico-redes-servidores",
                 "short_description": "Configuración de infraestructura, Linux, Docker, seguridad y asistencia presencial en Zulia.",
-                "detailed_description": "Mantenimiento preventivo y correctivo para que tu negocio nunca se detenga. Asistencia remota continua y atención presencial especializada en Maracaibo y el Zulia.",
+                "detailed_description": "Mantenimiento preventivo y correctivo para que tu negocio nunca se detenga. Asistencia remota continua y atención presencial especializada en el estado Zulia.",
                 "features": [
                     "Soporte remoto y presencial en Zulia",
                     "Despliegue y hardening de servidores Linux / Docker",
@@ -173,13 +173,13 @@ class Command(BaseCommand):
             },
             {
                 "question": "¿Prestan servicio presencial en Venezuela?",
-                "answer": "Sí. Brindamos atención, reuniones y soporte presencial exclusivamente en el estado Zulia (Maracaibo, San Francisco y zonas aledañas). Para el resto de Venezuela y clientes internacionales, trabajamos de manera 100% remota con canales fluidos.",
+                "answer": "Sí. Brindamos atención, reuniones y soporte presencial en el estado Zulia. Para el resto de Venezuela y clientes internacionales, trabajamos de manera 100% remota con canales fluidos.",
                 "category": "GENERAL",
                 "order": 2
             },
             {
-                "question": "¿Qué incluye exactamente el Pack Perfil Pro de 15$?",
-                "answer": "Incluye: 1) Ajuste estratégico de biografía y perfil en Instagram, 2) Creación de 5 portadas personalizadas para historias destacadas, 3) 1 enlace directo configurado hacia tu WhatsApp comercial, 4) 1 diseño publicitario listo para postear, y 5) Asesoría personalizada.",
+                "question": "¿Cómo funciona la consultoría y asesoría tecnológica?",
+                "answer": "Analizamos tus requerimientos operativos y comerciales para recomendarte la solución exacta: landing page, catálogo por WhatsApp o automatizaciones con Python a medida.",
                 "category": "SERVICIOS",
                 "order": 3
             },
