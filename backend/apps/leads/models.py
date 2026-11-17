@@ -13,10 +13,12 @@ class ContactLead(models.Model):
     SERVICE_CHOICES = [
         ('WEB', 'Páginas Web y Landing Pages'),
         ('CATALOG', 'Catálogo Digital con Pedido por WhatsApp'),
-        ('PACK_PRO', 'Pack Perfil Pro ($15)'),
-        ('SOFTWARE', 'Software a Medida / Python / Automatización'),
+        ('SOFTWARE', 'Software a Medida / Python'),
+        ('DOCS_PYTHON', 'Exportación de Documentos & Reportes (Python)'),
         ('DATABASE', 'Bases de Datos & Servidores'),
+        ('CONSULTING', 'Consultoría & Asesoría Tecnológica'),
         ('MARKETING', 'Diseño Gráfico / Identidad Visual'),
+        ('PACK_PRO', 'Pack Perfil Pro (Histórico)'),
         ('OTRO', 'Consulta General / Otra Solución'),
     ]
 

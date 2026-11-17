@@ -6,19 +6,20 @@ export const TerminalSimulator: React.FC = () => {
   const [copied, setCopied] = useState(false);
 
   const pythonCode = `# ez_pipeline.py — Automatización EZ Techlabs
-from ez_engine import Database, WhatsAppNotifier
+from ez_engine import Database, DocumentExporter, WhatsAppNotifier
 
 db = Database.connect("postgresql://ez_zulia@cluster")
 orders = db.query("SELECT * FROM pedidos WHERE estado = 'PENDIENTE'")
 
 for order in orders:
-    total = order.calculate_total(tax=0.16)
-    WhatsAppNotifier.send_receipt(
+    pdf_file = DocumentExporter.generate_pdf(order, template="factura_ez")
+    WhatsAppNotifier.send_document(
         phone=order.client_phone,
-        message=f"¡Hola! Tu orden #{order.id} fue confirmada exitosamente"
+        document=pdf_file,
+        message=f"¡Hola! Tu comprobante #{order.id} fue emitido con éxito."
     )
     order.mark_as_processed()
-print("[OK] Pipeline ejecutado en 0.04s. Cero fallas.")`;
+print("[OK] Pipeline de documentos ejecutado en 0.04s. Cero fallas.")`;
 
   const orderJson = `{
   "origen": "Catalogo_Digital_EZ",
@@ -112,17 +113,18 @@ print("[OK] Pipeline ejecutado en 0.04s. Cero fallas.")`;
           <pre className="text-ez-text/90">
             <code>
               <span className="text-ez-muted">{pythonCode.split('\n')[0]}</span>{'\n'}
-              <span className="text-purple-400">from</span> ez_engine <span className="text-purple-400">import</span> Database, WhatsAppNotifier{'\n\n'}
+              <span className="text-purple-400">from</span> ez_engine <span className="text-purple-400">import</span> Database, DocumentExporter, WhatsAppNotifier{'\n\n'}
               db = Database.connect(<span className="text-green-400">"postgresql://ez_zulia@cluster"</span>){'\n'}
               orders = db.query(<span className="text-green-400">"SELECT * FROM pedidos WHERE estado = 'PENDIENTE'"</span>){'\n\n'}
               <span className="text-purple-400">for</span> order <span className="text-purple-400">in</span> orders:{'\n'}
-              {'    '}total = order.calculate_total(tax=<span className="text-amber-400">0.16</span>){'\n'}
-              {'    '}WhatsAppNotifier.send_receipt({'\n'}
+              {'    '}pdf_file = DocumentExporter.generate_pdf(order, template=<span className="text-green-400">"factura_ez"</span>){'\n'}
+              {'    '}WhatsAppNotifier.send_document({'\n'}
               {'        '}phone=order.client_phone,{'\n'}
-              {'        '}message=<span className="text-green-400">f"¡Hola! Tu orden #{'{'}order.id{'}'} fue confirmada exitosamente"</span>{'\n'}
+              {'        '}document=pdf_file,{'\n'}
+              {'        '}message=<span className="text-green-400">f"¡Hola! Tu comprobante #{'{'}order.id{'}'} fue emitido con éxito."</span>{'\n'}
               {'    '}){'\n'}
               {'    '}order.mark_as_processed(){'\n'}
-              <span className="text-ez-neon font-bold">print(<span className="text-green-400">"[OK] Pipeline ejecutado en 0.04s. Cero fallas."</span>)</span>
+              <span className="text-ez-neon font-bold">print(<span className="text-green-400">"[OK] Pipeline de documentos ejecutado en 0.04s. Cero fallas."</span>)</span>
             </code>
           </pre>
         )}

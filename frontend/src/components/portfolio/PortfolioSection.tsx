@@ -15,7 +15,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) 
     { label: 'Catálogos WhatsApp', value: 'CATALOG' },
     { label: 'Páginas Web', value: 'WEB' },
     { label: 'Software & Python', value: 'SOFTWARE' },
-    { label: 'Pack Pro / Branding', value: 'BRANDING' },
+    { label: 'Consultoría & Marca', value: 'BRANDING' },
   ];
 
   const filteredProjects = selectedFilter === 'ALL'

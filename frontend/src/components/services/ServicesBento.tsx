@@ -6,12 +6,13 @@ import {
   Code, 
   Database, 
   Server, 
-  Palette, 
   CheckCircle2, 
   ArrowUpRight,
   MessageSquare,
   Clock,
-  Zap
+  Zap,
+  FileText,
+  Lightbulb
 } from 'lucide-react';
 import type { ServiceItem, SiteConfig } from '../../types';
 import { TiltCard } from '../ui/TiltCard';
@@ -28,8 +29,6 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
   const softwareService = services.find((s) => s.slug === 'software-a-medida-python') || services[3];
   const dataService = services.find((s) => s.slug === 'bases-de-datos-automatizacion') || services[4];
   const serverService = services.find((s) => s.slug === 'soporte-tecnico-redes-servidores') || services[5];
-  const brandingService = services.find((s) => s.slug === 'marketing-diseno-de-marca') || services[6];
-  const packProService = services.find((s) => s.is_pack_pro || s.slug === 'pack-perfil-pro') || services[2];
 
   const getWhatsAppServiceUrl = (serviceTitle: string) => {
     const text = `Hola EZ Techlabs, me interesa cotizar el servicio: ${serviceTitle}. Vengo desde su página web.`;
@@ -250,7 +249,56 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
           </div>
 
-          {/* SERVICE 4: BASES DE DATOS & AUTOMATIZACIÓN (4 cols Desktop) */}
+          {/* SERVICE 4: EXPORTACIÓN & DOCUMENTOS CON PYTHON (4 cols Desktop) */}
+          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
+                  AUTOMATIZACIÓN PYTHON
+                </span>
+              </div>
+
+              <h3 className="text-lg sm:text-xl font-display font-bold text-ez-text mb-2">
+                Exportación de Documentos & Reportes
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Herramientas en Python que generan y exportan automáticamente reportes en PDF, Excel estructurado y CSV a partir de tus bases de datos con un clic.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Generación masiva de PDFs (facturas, cotizaciones, recibos)</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Exportación de inventarios y finanzas a Excel con fórmulas</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
+                  <span>Cero trabajo manual: consolidación y envío automático</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">Procesamiento automático</span>
+              <a
+                href={getWhatsAppServiceUrl("Automatización y Exportación de Documentos en Python")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Automatizar documentos</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICE 5: BASES DE DATOS & AUTOMATIZACIÓN (4 cols Desktop) */}
           <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -264,17 +312,17 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 {dataService?.title || 'Bases de Datos & Automatización'}
               </h3>
               <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
-                Conexión entre aplicaciones, optimización de consultas en PostgreSQL y eliminación de tareas manuales repetitivas mediante scripts automatizados.
+                Conexión entre aplicaciones, optimización de consultas en PostgreSQL y eliminación de tareas repetitivas mediante pipelines automatizados.
               </p>
 
               <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
                 <li className="flex items-center space-x-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Sincronización de datos e inventarios</span>
+                  <span>Sincronización de datos e inventarios en tiempo real</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Ejecución de tareas periódicas y cron jobs</span>
+                  <span>Ejecución de tareas periódicas y cron jobs seguros</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
@@ -291,14 +339,63 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
               >
-                <span>Automatizar</span>
+                <span>Optimizar datos</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
 
-          {/* SERVICE 5: SOPORTE TÉCNICO, REDES & SERVIDORES (4 cols Desktop) */}
-          <div className="lg:col-span-4 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+          {/* SERVICE 6: CONSULTORÍA & ASESORÍA TECNOLÓGICA (6 cols Desktop) */}
+          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                  <Lightbulb className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
+                  ESTRATEGIA & NEGOCIOS
+                </span>
+              </div>
+
+              <h3 className="text-xl font-display font-bold text-ez-text mb-2">
+                Consultoría & Asesoría Tecnológica
+              </h3>
+              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
+                Evaluamos la operación de tu negocio para definir la arquitectura y herramientas digitales adecuadas. Evita gastar en software genérico o desarrollos innecesarios.
+              </p>
+
+              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>Diagnóstico técnico de sistemas, procesos y canales de venta</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>Selección estratégica de tecnología (Python, bases de datos, hosting)</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
+                  <span>Sesiones 1 a 1 de asesoría técnica presencial en Zulia o virtual</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
+              <span className="text-xs font-mono text-ez-muted">Asesoría personalizada</span>
+              <a
+                href={getWhatsAppServiceUrl("Consultoría y Asesoría Tecnológica")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
+              >
+                <span>Agendar asesoría</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* SERVICE 7: SOPORTE TÉCNICO, REDES & SERVIDORES (6 cols Desktop) */}
+          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
@@ -309,127 +406,25 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 </span>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-display font-bold text-ez-text mb-2">
+              <h3 className="text-xl font-display font-bold text-ez-text mb-2">
                 {serverService?.title || 'Soporte Técnico, Redes & Servidores'}
               </h3>
               <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
-                Mantenimiento de infraestructura, hardening de Linux, Docker, respaldos automáticos y asistencia técnica presencial en Maracaibo y el Zulia.
-              </p>
-
-              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Asistencia presencial directa en Maracaibo/Zulia</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Servidores Linux, Docker y copias de seguridad</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Monitoreo 24/7 y respuesta ante incidencias</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">Asistencia técnica 24/7</span>
-              <a
-                href={getWhatsAppServiceUrl(serverService?.title || "Soporte Técnico y Servidores")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
-              >
-                <span>Solicitar soporte</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
-          {/* SERVICE 6: MARKETING & DISEÑO DE MARCA (6 cols Desktop) */}
-          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                  <Palette className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-mono text-ez-muted">IDENTIDAD VISUAL</span>
-              </div>
-
-              <h3 className="text-xl font-display font-bold text-ez-text mb-2">
-                {brandingService?.title || 'Marketing & Diseño de Marca'}
-              </h3>
-              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
-                Dale a tu negocio una imagen que transmita confianza inmediata. Diseñamos logotipos vectoriales, manuales de marca y piezas gráficas para destacar en el mercado.
-              </p>
-
-              <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Diseño y vectorización de logotipos</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Kits de marca y paletas de color con alto contraste</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-ez-neon"></span>
-                  <span>Material para redes sociales y piezas publicitarias</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">Diseño personalizado</span>
-              <a
-                href={getWhatsAppServiceUrl(brandingService?.title || "Diseño de Marca y Marketing")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
-              >
-                <span>Cotizar diseño</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
-          {/* SERVICE 7: PACK PERFIL PRO (6 cols Desktop) */}
-          <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
-                  REDES & VENTAS
-                </span>
-              </div>
-
-              <div className="flex items-baseline justify-between mb-2">
-                <h3 className="text-xl font-display font-bold text-ez-text">
-                  {packProService?.title || 'Pack Perfil Pro'}
-                </h3>
-                <span className="text-xs font-mono text-ez-muted">
-                  Optimización Express
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
-                Optimización estratégica de tu perfil comercial de Instagram para generar confianza inmediata y convertir seguidores en mensajes de WhatsApp.
+                Mantenimiento de infraestructura tecnológica, hardening de servidores Linux, Docker, copias de seguridad automáticas y asistencia presencial en Maracaibo y el Zulia.
               </p>
 
               <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
-                  <span>Ajuste estratégico de biografía y gancho de ventas</span>
+                  <span>Asistencia presencial directa en Maracaibo y estado Zulia</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
-                  <span>5 portadas para historias destacadas en HD</span>
+                  <span>Configuración de servidores Linux, Docker y respaldos automáticos</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
-                  <span>1 enlace directo a WhatsApp y 1 diseño promocional</span>
+                  <span>Monitoreo 24/7 y respuesta rápida ante caídas de servicio</span>
                 </li>
               </ul>
             </div>
@@ -437,15 +432,15 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
               <div className="flex items-center space-x-1.5 text-xs font-mono text-ez-muted">
                 <Zap className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
-                <span>Entrega en 48h hábiles</span>
+                <span>Respuesta 24/7</span>
               </div>
               <a
-                href={getWhatsAppServiceUrl("Pack Perfil Pro")}
+                href={getWhatsAppServiceUrl(serverService?.title || "Soporte Técnico y Servidores")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
               >
-                <span>Consultar pack</span>
+                <span>Solicitar soporte</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

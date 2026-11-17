@@ -289,10 +289,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                     >
                       <option value="WEB">Página Web o Landing Page</option>
                       <option value="CATALOG">Catálogo Digital con WhatsApp</option>
-                      <option value="PACK_PRO">Pack Perfil Pro (Redes)</option>
                       <option value="SOFTWARE">Software a Medida / Python</option>
-                      <option value="DATABASE">Bases de Datos & Automatización</option>
-                      <option value="MARKETING">Marketing & Identidad Visual</option>
+                      <option value="DOCS_PYTHON">Exportación de Documentos & Reportes (Python)</option>
+                      <option value="DATABASE">Bases de Datos & Servidores</option>
+                      <option value="CONSULTING">Consultoría & Asesoría Tecnológica</option>
+                      <option value="MARKETING">Diseño de Marca & Identidad Visual</option>
                       <option value="OTRO">Soporte Técnico / Otro Servicio</option>
                     </select>
                   </div>

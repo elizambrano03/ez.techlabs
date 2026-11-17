@@ -68,21 +68,20 @@ class Command(BaseCommand):
                 "order": 2
             },
             {
-                "title": "Pack Perfil Pro",
-                "slug": "pack-perfil-pro",
-                "short_description": "Transforma tu Instagram en un imán de clientes con identidad profesional en 48 horas.",
-                "detailed_description": "Diseñado para emprendedores y comercios que necesitan proyectar seriedad y captar mensajes de inmediato en sus redes sociales con mínima inversión.",
+                "title": "Exportación de Documentos & Reportes (Python)",
+                "slug": "exportacion-documentos-python",
+                "short_description": "Generación automática de reportes en PDF, Excel estructurado y CSV a partir de tus bases de datos con un clic.",
+                "detailed_description": "Automatizamos la emisión masiva de facturas, cotizaciones, recibos y reportes financieros con scripts en Python, eliminando la digitación manual y los errores humanos.",
                 "features": [
-                    "Ajuste estratégico del perfil y biografía",
-                    "5 portadas de historias destacadas profesionales",
-                    "1 enlace directo y personalizado a WhatsApp",
-                    "1 diseño promocional listo para publicar en feed/historias",
-                    "Asesoría técnica y de imagen personalizada"
+                    "Generación masiva de PDFs corporativos (facturas, cotizaciones, recibos)",
+                    "Exportación rápida de inventarios y datos a Excel con fórmulas",
+                    "Extracción y consolidación de datos entre sistemas",
+                    "Envío automatizado directo por correo o WhatsApp"
                 ],
-                "price_display": "Consultar",
-                "badge_text": "REDES & VENTAS",
-                "icon_name": "Sparkles",
-                "is_pack_pro": True,
+                "price_display": "Automatización a medida",
+                "badge_text": "AUTOMATIZACIÓN PYTHON",
+                "icon_name": "FileText",
+                "is_pack_pro": False,
                 "is_featured": True,
                 "order": 3
             },
@@ -141,19 +140,19 @@ class Command(BaseCommand):
                 "order": 6
             },
             {
-                "title": "Marketing & Diseño de Marca",
-                "slug": "marketing-diseno-de-marca",
-                "short_description": "Diseño de logotipos, manuales de identidad visual y contenido publicitario para posicionarte.",
-                "detailed_description": "Dale a tu negocio la identidad visual que merece. Creamos piezas gráficas profesionales que generan confianza inmediata y diferencian tu marca de la competencia.",
+                "title": "Consultoría & Asesoría Tecnológica",
+                "slug": "consultoria-asesoria-tecnologica",
+                "short_description": "Evaluamos tu modelo de negocio para definir qué tecnología te conviene adoptar, evitando compras de software inútil y optimizando tus costos operativos.",
+                "detailed_description": "Acompañamiento técnico estratégico para negocios en el Zulia y remoto. Te ayudamos a seleccionar arquitectura de software, automatizaciones y proveedores adecuados.",
                 "features": [
-                    "Diseño y vectorización de logotipos",
-                    "Kits de marca y paletas de color con contraste",
-                    "Material para redes sociales y banners",
-                    "Optimización de imagen corporativa"
+                    "Diagnóstico técnico de sistemas, procesos y canales de venta",
+                    "Selección estratégica de tecnología (Python, bases de datos, hosting)",
+                    "Sesiones 1 a 1 de asesoría técnica presencial en Zulia o virtual",
+                    "Planes de modernización paso a paso para tu equipo"
                 ],
-                "price_display": "Diseño personalizado",
-                "badge_text": "CREATIVIDAD",
-                "icon_name": "Palette",
+                "price_display": "Asesoría personalizada",
+                "badge_text": "ESTRATEGIA & NEGOCIOS",
+                "icon_name": "Lightbulb",
                 "is_pack_pro": False,
                 "is_featured": False,
                 "order": 7
