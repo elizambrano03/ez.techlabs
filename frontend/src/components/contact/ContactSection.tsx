@@ -23,6 +23,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [lastSubmitted, setLastSubmitted] = useState<LeadSubmission | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -36,9 +37,38 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
     setSuccessMsg(null);
     setErrorMsg(null);
 
+    const submissionSnapshot = { ...formData };
+
     try {
+      // 1. Guardar en Base de Datos PostgreSQL de EZ Techlabs
       const res = await api.submitLead(formData);
-      setSuccessMsg(res.message || "¡Mensaje recibido con éxito! Te contactaremos a la brevedad.");
+
+      // 2. Disparo de notificación directa por correo a zambranoeli2010@gmail.com
+      try {
+        const targetEmail = config.contact_email || 'zambranoeli2010@gmail.com';
+        await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            _subject: `🚀 Nueva Solicitud de Proyecto: ${formData.full_name} (${formData.business_name || 'Sin empresa'})`,
+            Nombre_Cliente: formData.full_name,
+            Empresa_Negocio: formData.business_name || 'No especificado',
+            Telefono_WhatsApp: formData.phone,
+            Email_Contacto: formData.email,
+            Servicio_Interes: formData.service_interest,
+            Alcance_Proyecto: formData.budget_range,
+            Mensaje_Detalles: formData.message,
+          }),
+        });
+      } catch (emailDispatchErr) {
+        console.warn('Email dispatch backup notice:', emailDispatchErr);
+      }
+
+      setLastSubmitted(submissionSnapshot);
+      setSuccessMsg(res.message || "¡Propuesta recibida con éxito! Tu proyecto fue registrado en nuestra base de datos.");
       setFormData({
         full_name: '',
         business_name: '',
@@ -193,12 +223,47 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
 
               {/* Success Notification */}
               {successMsg && (
-                <div className="mb-6 p-4 rounded-xl bg-ez-neon/15 border border-ez-neon text-ez-text text-sm flex items-start space-x-3">
-                  <CheckCircle2 className="w-5 h-5 text-ez-neon flex-shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="block text-ez-neon font-bold">¡Mensaje Enviado!</strong>
-                    <span>{successMsg}</span>
+                <div className="mb-6 p-5 rounded-xl bg-ez-neon/15 border border-ez-neon text-ez-text text-sm">
+                  <div className="flex items-start space-x-3 mb-3">
+                    <CheckCircle2 className="w-5 h-5 text-ez-neon flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="block text-ez-neon font-bold text-base">¡Propuesta Registrada con Éxito!</strong>
+                      <span className="text-xs sm:text-sm text-ez-text/90">{successMsg}</span>
+                    </div>
                   </div>
+
+                  {lastSubmitted && (
+                    <div className="pt-3 border-t border-ez-neon/30 mt-3">
+                      <p className="text-xs font-mono text-ez-muted mb-2">
+                        ¿Deseas respuesta inmediata? Notifícanos con un clic:
+                      </p>
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <a
+                          href={`https://wa.me/${config.whatsapp_raw}?text=${encodeURIComponent(
+                            `Hola EZ Techlabs, acabo de enviar mi propuesta web:\n\n• Nombre: ${lastSubmitted.full_name}\n• Negocio: ${lastSubmitted.business_name || 'Particular'}\n• Teléfono: ${lastSubmitted.phone}\n• Servicio: ${lastSubmitted.service_interest}\n• Mensaje: ${lastSubmitted.message}`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center space-x-2 px-3.5 py-2 rounded-lg bg-ez-neon text-ez-bg font-bold font-mono text-xs uppercase tracking-wider hover:bg-ez-neon/90 transition-all shadow-neon"
+                        >
+                          <Phone className="w-3.5 h-3.5" />
+                          <span>Notificar por WhatsApp</span>
+                        </a>
+
+                        <a
+                          href={`mailto:${config.contact_email || 'zambranoeli2010@gmail.com'}?subject=${encodeURIComponent(
+                            `Propuesta de Proyecto Web: ${lastSubmitted.full_name}`
+                          )}&body=${encodeURIComponent(
+                            `Hola EZ Techlabs,\n\nDetalles de mi solicitud:\n- Nombre: ${lastSubmitted.full_name}\n- Empresa: ${lastSubmitted.business_name || 'No especificada'}\n- Teléfono: ${lastSubmitted.phone}\n- Correo: ${lastSubmitted.email}\n- Servicio: ${lastSubmitted.service_interest}\n- Alcance: ${lastSubmitted.budget_range}\n\nDetalles:\n${lastSubmitted.message}`
+                          )}`}
+                          className="inline-flex items-center justify-center space-x-2 px-3.5 py-2 rounded-lg bg-black/40 border border-ez-border text-ez-text hover:text-ez-neon hover:border-ez-neon/50 font-mono text-xs uppercase transition-all"
+                        >
+                          <Mail className="w-3.5 h-3.5 text-ez-neon" />
+                          <span>Abrir en mi Correo</span>
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 
