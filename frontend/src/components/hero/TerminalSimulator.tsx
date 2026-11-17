@@ -15,7 +15,7 @@ for order in orders:
     total = order.calculate_total(tax=0.16)
     WhatsAppNotifier.send_receipt(
         phone=order.client_phone,
-        message=f"¡Hola! Tu orden #{order.id} fue confirmada por {total}$"
+        message=f"¡Hola! Tu orden #{order.id} fue confirmada exitosamente"
     )
     order.mark_as_processed()
 print("[OK] Pipeline ejecutado en 0.04s. Cero fallas.")`;
@@ -119,7 +119,7 @@ print("[OK] Pipeline ejecutado en 0.04s. Cero fallas.")`;
               {'    '}total = order.calculate_total(tax=<span className="text-amber-400">0.16</span>){'\n'}
               {'    '}WhatsAppNotifier.send_receipt({'\n'}
               {'        '}phone=order.client_phone,{'\n'}
-              {'        '}message=<span className="text-green-400">f"¡Hola! Tu orden #{'{'}order.id{'}'} fue confirmada por {'{'}total{'}'}$"</span>{'\n'}
+              {'        '}message=<span className="text-green-400">f"¡Hola! Tu orden #{'{'}order.id{'}'} fue confirmada exitosamente"</span>{'\n'}
               {'    '}){'\n'}
               {'    '}order.mark_as_processed(){'\n'}
               <span className="text-ez-neon font-bold">print(<span className="text-green-400">"[OK] Pipeline ejecutado en 0.04s. Cero fallas."</span>)</span>

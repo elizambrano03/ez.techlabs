@@ -15,7 +15,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
     email: '',
     phone: '',
     service_interest: 'WEB',
-    budget_range: '$100 - $300',
+    budget_range: 'Por definir',
     message: '',
     honey_trap: '', // Anti-spam trap
   });
@@ -289,7 +289,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                     >
                       <option value="WEB">Página Web o Landing Page</option>
                       <option value="CATALOG">Catálogo Digital con WhatsApp</option>
-                      <option value="PACK_PRO">Pack Perfil Pro ($15)</option>
+                      <option value="PACK_PRO">Pack Perfil Pro (Redes)</option>
                       <option value="SOFTWARE">Software a Medida / Python</option>
                       <option value="DATABASE">Bases de Datos & Automatización</option>
                       <option value="MARKETING">Marketing & Identidad Visual</option>
@@ -297,10 +297,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                     </select>
                   </div>
 
-                  {/* Budget */}
+                  {/* Project Scope */}
                   <div>
                     <label className="block text-xs font-mono text-ez-muted mb-1.5 uppercase">
-                      Rango Estimado
+                      Alcance del Proyecto
                     </label>
                     <select
                       name="budget_range"
@@ -308,11 +308,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl bg-[#090e10] border border-ez-border text-ez-text text-base sm:text-sm focus:outline-none focus:border-ez-neon focus:ring-1 focus:ring-ez-neon transition-colors"
                     >
-                      <option value="$100 - $300">$100 - $300 (Web / Catálogo)</option>
-                      <option value="15$">15$ (Pack Perfil Pro)</option>
-                      <option value="$300 - $800">$300 - $800 (Sistema a Medida)</option>
-                      <option value="+$800">+$800 (Plataforma Completa)</option>
-                      <option value="Por definir">Por definir / Asesoría previa</option>
+                      <option value="EMPRENDIMIENTO">Nuevo Emprendimiento / Marca Naciente</option>
+                      <option value="PYME">Negocio Local / Pyme en Crecimiento</option>
+                      <option value="CORPORATIVO">Empresa Consolidada / Sistema a Medida</option>
+                      <option value="Por definir">Por definir / Deseo asesoría previa</option>
                     </select>
                   </div>
                 </div>

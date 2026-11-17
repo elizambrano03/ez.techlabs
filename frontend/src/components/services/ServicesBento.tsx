@@ -31,8 +31,8 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
   const brandingService = services.find((s) => s.slug === 'marketing-diseno-de-marca') || services[6];
   const packProService = services.find((s) => s.is_pack_pro || s.slug === 'pack-perfil-pro') || services[2];
 
-  const getWhatsAppServiceUrl = (serviceTitle: string, price?: string) => {
-    const text = `Hola EZ Techlabs, me interesa cotizar el servicio: ${serviceTitle}${price ? ` (${price})` : ''}. Vengo desde su página web.`;
+  const getWhatsAppServiceUrl = (serviceTitle: string) => {
+    const text = `Hola EZ Techlabs, me interesa cotizar el servicio: ${serviceTitle}. Vengo desde su página web.`;
     return `https://wa.me/${config.whatsapp_raw}?text=${encodeURIComponent(text)}`;
   };
 
@@ -94,16 +94,16 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                       <span>SOLUCIÓN DESTACADA • ALTA CONVERSIÓN</span>
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-display font-extrabold text-ez-text mt-1.5">
-                      Páginas Web & Landing Pages de Alto Rendimiento
+                      {webService?.title || 'Páginas Web & Landing Pages de Alto Rendimiento'}
                     </h3>
                   </div>
                 </div>
 
-                {/* Price Tag */}
+                {/* Modality Tag */}
                 <div className="text-left sm:text-right mt-1 sm:mt-0">
-                  <span className="text-[11px] font-mono text-ez-muted block">INVERSIÓN TRANSPARENTE</span>
-                  <span className="text-2xl sm:text-3xl font-display font-black text-ez-neon">
-                    {webService?.price_display || 'Desde $120'}
+                  <span className="text-[11px] font-mono text-ez-muted block">MODALIDAD</span>
+                  <span className="text-sm sm:text-base font-display font-bold text-ez-neon">
+                    Cotización a Medida
                   </span>
                 </div>
               </div>
@@ -142,13 +142,13 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 <span>Entrega desde 5 días hábiles • Garantía 50/50</span>
               </div>
               <a
-                href={getWhatsAppServiceUrl("Páginas Web y Landing Pages", webService?.price_display || "Desde $120")}
+                href={getWhatsAppServiceUrl("Páginas Web y Landing Pages")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-ez-neon text-ez-bg font-display font-bold text-xs uppercase tracking-wider hover:bg-ez-neon/90 shadow-neon transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Cotizar Página Web</span>
+                <span>Cotizar Proyecto</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
@@ -190,9 +190,9 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
 
             <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">{catalogService?.price_display || 'Desde $180'}</span>
+              <span className="text-xs font-mono text-ez-muted">Presupuesto a medida</span>
               <a
-                href={getWhatsAppServiceUrl(catalogService?.title || "Catálogo Digital WhatsApp", catalogService?.price_display || "Desde $180")}
+                href={getWhatsAppServiceUrl(catalogService?.title || "Catálogo Digital WhatsApp")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
@@ -237,7 +237,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
 
             <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">{softwareService?.price_display || 'A tu medida'}</span>
+              <span className="text-xs font-mono text-ez-muted">Desarrollo a medida</span>
               <a
                 href={getWhatsAppServiceUrl(softwareService?.title || "Software a Medida")}
                 target="_blank"
@@ -284,7 +284,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
 
             <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">{dataService?.price_display || 'A tu medida'}</span>
+              <span className="text-xs font-mono text-ez-muted">Flujos automatizados</span>
               <a
                 href={getWhatsAppServiceUrl(dataService?.title || "Bases de Datos & Automatización")}
                 target="_blank"
@@ -333,7 +333,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
 
             <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">{serverService?.price_display || 'Planes & Soporte'}</span>
+              <span className="text-xs font-mono text-ez-muted">Asistencia técnica 24/7</span>
               <a
                 href={getWhatsAppServiceUrl(serverService?.title || "Soporte Técnico y Servidores")}
                 target="_blank"
@@ -380,7 +380,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
 
             <div className="pt-4 border-t border-ez-border/60 flex items-center justify-between">
-              <span className="text-xs font-mono text-ez-muted">{brandingService?.price_display || 'Desde $40'}</span>
+              <span className="text-xs font-mono text-ez-muted">Diseño personalizado</span>
               <a
                 href={getWhatsAppServiceUrl(brandingService?.title || "Diseño de Marca y Marketing")}
                 target="_blank"
@@ -393,7 +393,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
             </div>
           </div>
 
-          {/* SERVICE 7: PACK PERFIL PRO 15$ (6 cols Desktop) */}
+          {/* SERVICE 7: PACK PERFIL PRO (6 cols Desktop) */}
           <div className="lg:col-span-6 rounded-2xl glass-panel p-5 sm:p-7 flex flex-col justify-between hover:border-ez-neon/40 transition-all duration-300 group">
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -401,21 +401,21 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-mono text-ez-neon bg-ez-neon/10 px-2.5 py-0.5 rounded border border-ez-neon/20">
-                  IMPULSO INICIAL 15$
+                  REDES & VENTAS
                 </span>
               </div>
 
               <div className="flex items-baseline justify-between mb-2">
                 <h3 className="text-xl font-display font-bold text-ez-text">
-                  {packProService?.title || 'Pack Perfil Pro ($15)'}
+                  {packProService?.title || 'Pack Perfil Pro'}
                 </h3>
-                <span className="text-xl font-display font-extrabold text-ez-neon">
-                  {packProService?.price_display || '15$'}
+                <span className="text-xs font-mono text-ez-muted">
+                  Optimización Express
                 </span>
               </div>
 
               <p className="text-xs sm:text-sm text-ez-muted mb-4 leading-relaxed">
-                Optimización rápida de tu Instagram comercial para generar confianza y captar mensajes de WhatsApp en 48 horas con una mínima inversión.
+                Optimización estratégica de tu perfil comercial de Instagram para generar confianza inmediata y convertir seguidores en mensajes de WhatsApp.
               </p>
 
               <ul className="space-y-2 mb-6 text-xs text-ez-text/80">
@@ -429,7 +429,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-ez-neon flex-shrink-0" />
-                  <span>1 enlace directo a WhatsApp y 1 post promocional</span>
+                  <span>1 enlace directo a WhatsApp y 1 diseño promocional</span>
                 </li>
               </ul>
             </div>
@@ -440,12 +440,12 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ services, config }
                 <span>Entrega en 48h hábiles</span>
               </div>
               <a
-                href={getWhatsAppServiceUrl(packProService?.title || "Pack Perfil Pro", "15$")}
+                href={getWhatsAppServiceUrl("Pack Perfil Pro")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-ez-neon hover:underline flex items-center space-x-1 font-bold"
               >
-                <span>Pedir pack</span>
+                <span>Consultar pack</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>

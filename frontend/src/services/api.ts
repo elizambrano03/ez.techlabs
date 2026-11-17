@@ -34,7 +34,7 @@ export const fallbackServices: ServiceItem[] = [
       "Integración directa con WhatsApp y CRM",
       "SEO técnico y metadatos sociales incluidos"
     ],
-    price_display: "Desde $120",
+    price_display: "Cotización a medida",
     badge_text: "MÁS SOLICITADO",
     icon_name: "Globe",
     is_pack_pro: false,
@@ -53,7 +53,7 @@ export const fallbackServices: ServiceItem[] = [
       "Categorías, búsqueda en tiempo real y fotos HD",
       "Listo para operar en bolívares, dólares o cripto"
     ],
-    price_display: "Desde $180",
+    price_display: "Presupuesto a medida",
     badge_text: "ALTA CONVERSIÓN",
     icon_name: "ShoppingCart",
     is_pack_pro: false,
@@ -62,7 +62,7 @@ export const fallbackServices: ServiceItem[] = [
   },
   {
     id: 3,
-    title: "Pack Perfil Pro ($15)",
+    title: "Pack Perfil Pro",
     slug: "pack-perfil-pro",
     short_description: "Transforma tu Instagram en un imán de clientes con identidad profesional en 48 horas.",
     detailed_description: "Diseñado para emprendedores y comercios que necesitan proyectar seriedad y captar mensajes de inmediato en sus redes sociales con mínima inversión.",
@@ -73,8 +73,8 @@ export const fallbackServices: ServiceItem[] = [
       "1 diseño promocional listo para publicar en feed/historias",
       "Asesoría técnica y de imagen personalizada"
     ],
-    price_display: "15$",
-    badge_text: "OFERTA ESPECIAL 15$",
+    price_display: "Consultar",
+    badge_text: "REDES & VENTAS",
     icon_name: "Sparkles",
     is_pack_pro: true,
     is_featured: true,
@@ -92,7 +92,7 @@ export const fallbackServices: ServiceItem[] = [
       "Roles de usuario, permisos y auditoría",
       "Módulos de facturación, inventario o reportes"
     ],
-    price_display: "A medida",
+    price_display: "Desarrollo a medida",
     badge_text: "INGENIERÍA AVANZADA",
     icon_name: "Code",
     is_pack_pro: false,
@@ -111,7 +111,7 @@ export const fallbackServices: ServiceItem[] = [
       "Diseño e indexación de bases de datos SQL",
       "Integración con APIs externas y pasarelas"
     ],
-    price_display: "A medida",
+    price_display: "Flujos automatizados",
     badge_text: "OPTIMIZACIÓN",
     icon_name: "Database",
     is_pack_pro: false,
@@ -130,7 +130,7 @@ export const fallbackServices: ServiceItem[] = [
       "Copias de seguridad automáticas y recuperación ante desastres",
       "Monitoreo 24/7 y respuesta rápida ante incidencias"
     ],
-    price_display: "Planes & Soporte",
+    price_display: "Asistencia 24/7",
     badge_text: "PRESENCIAL EN ZULIA",
     icon_name: "Server",
     is_pack_pro: false,
@@ -149,7 +149,7 @@ export const fallbackServices: ServiceItem[] = [
       "Material para redes sociales y banners",
       "Optimización de imagen corporativa"
     ],
-    price_display: "Desde $40",
+    price_display: "Diseño personalizado",
     badge_text: "CREATIVIDAD",
     icon_name: "Palette",
     is_pack_pro: false,

@@ -91,7 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ config }) => {
                 href="#servicios"
                 className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 sm:py-4 rounded-xl glass-panel hover:bg-ez-panelHover text-ez-text font-mono text-xs uppercase tracking-wider border border-ez-border hover:border-ez-neon/50 transition-all duration-200"
               >
-                <span>Explorar Soluciones & Precios</span>
+                <span>Explorar Soluciones</span>
               </a>
             </div>
 
