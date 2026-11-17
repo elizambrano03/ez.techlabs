@@ -108,12 +108,15 @@ export const Footer: React.FC<FooterProps> = ({ config }) => {
                 <span>{config.instagram_handle}</span>
               </a>
 
-              <div className="flex items-center space-x-2.5 text-ez-text">
-                <div className="p-1.5 rounded bg-ez-panel border border-ez-border text-ez-neon">
+              <a
+                href={`mailto:${config.contact_email}?subject=${encodeURIComponent('Consulta de Proyecto - EZ Techlabs')}`}
+                className="flex items-center space-x-2.5 text-ez-text hover:text-ez-neon transition-colors group"
+              >
+                <div className="p-1.5 rounded bg-ez-panel border border-ez-border text-ez-neon group-hover:border-ez-neon">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span>{config.contact_email}</span>
-              </div>
+              </a>
             </div>
 
             <div className="mt-6 p-3 rounded-lg bg-ez-panel/60 border border-ez-border">

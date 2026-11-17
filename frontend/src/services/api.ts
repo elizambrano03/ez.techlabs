@@ -13,7 +13,7 @@ export const fallbackConfig: SiteConfig = {
   whatsapp_welcome_message: "¡Hola EZ Techlabs! Vengo de su sitio web y quiero cotizar una solución digital para mi negocio.",
   instagram_handle: "@ez.techlabs",
   instagram_url: "https://instagram.com/ez.techlabs",
-  contact_email: "contacto@eztechlabs.com",
+  contact_email: "zambranoeli2010@gmail.com",
   coverage_title: "Cobertura Híbrida & Operación 24/7",
   coverage_summary: "Desarrollamos de forma remota para clientes globales y brindamos atención presencial exclusiva en el estado Zulia, Venezuela. Monitoreo y soporte técnico continuo 24/7.",
   commitment_title: "Compromiso de Confianza 50 / 50",

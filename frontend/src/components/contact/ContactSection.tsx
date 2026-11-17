@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, MessageSquare, MapPin, Phone, Clock, ArrowUpRight, ShieldCheck } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, MessageSquare, MapPin, Phone, Clock, ArrowUpRight, ShieldCheck, Mail } from 'lucide-react';
 import { InstagramIcon } from '../ui/InstagramIcon';
 import type { SiteConfig, LeadSubmission } from '../../types';
 import { api } from '../../services/api';
@@ -120,6 +120,25 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ config }) => {
                     <span className="text-xs font-mono text-ez-muted block">INSTAGRAM OFICIAL</span>
                     <span className="text-sm sm:text-base font-bold text-ez-text group-hover:text-ez-neon transition-colors">
                       {config.instagram_handle}
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-ez-muted group-hover:text-ez-neon transition-colors" />
+              </a>
+
+              {/* Direct Email Card */}
+              <a
+                href={`mailto:${config.contact_email}?subject=${encodeURIComponent('Cotización / Propuesta de Proyecto - EZ Techlabs')}`}
+                className="flex items-center justify-between p-4 rounded-xl glass-panel hover:border-ez-neon/50 transition-all duration-200 group"
+              >
+                <div className="flex items-center space-x-3.5">
+                  <div className="w-10 h-10 rounded-lg bg-ez-panel border border-ez-border flex items-center justify-center text-ez-neon group-hover:scale-110 transition-transform">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono text-ez-muted block">RECEPCIÓN DE TRABAJOS Y COTIZACIONES</span>
+                    <span className="text-sm sm:text-base font-bold text-ez-text group-hover:text-ez-neon transition-colors">
+                      {config.contact_email}
                     </span>
                   </div>
                 </div>

@@ -20,7 +20,7 @@ class Command(BaseCommand):
         config.whatsapp_welcome_message = "¡Hola EZ Techlabs! Vengo de su sitio web y quiero cotizar una solución digital para mi negocio."
         config.instagram_handle = "@ez.techlabs"
         config.instagram_url = "https://instagram.com/ez.techlabs"
-        config.contact_email = "contacto@eztechlabs.com"
+        config.contact_email = "zambranoeli2010@gmail.com"
         config.coverage_title = "Cobertura Híbrida & Operación 24/7"
         config.coverage_summary = "Desarrollamos de forma remota para clientes globales y brindamos atención presencial exclusiva en el estado Zulia, Venezuela. Monitoreo y soporte técnico continuo 24/7."
         config.commitment_title = "Compromiso de Confianza 50 / 50"

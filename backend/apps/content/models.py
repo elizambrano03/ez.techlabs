@@ -29,7 +29,7 @@ class SiteConfig(models.Model):
     )
     instagram_handle = models.CharField(max_length=60, default="@ez.techlabs")
     instagram_url = models.URLField(default="https://instagram.com/ez.techlabs")
-    contact_email = models.EmailField(default="contacto@eztechlabs.com")
+    contact_email = models.EmailField(default="zambranoeli2010@gmail.com")
     coverage_title = models.CharField(
         max_length=150,
         default="Cobertura y Operación Técnica"
