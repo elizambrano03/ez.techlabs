@@ -69,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ config }) => {
               </div>
               <div className="flex items-center space-x-2 text-ez-text/90">
                 <Sparkles className="w-4 h-4 text-ez-neon flex-shrink-0" />
-                <span>Cero plantillas: Código artesanal para ti</span>
+                <span>Ingeniería a medida: Desarrollo 100% exclusivo</span>
               </div>
               <div className="flex items-center space-x-2 text-ez-text/90">
                 <MapPin className="w-4 h-4 text-ez-neon flex-shrink-0" />

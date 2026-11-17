@@ -20,9 +20,9 @@ export const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ config }) => {
       number: '02',
       title: 'Diseñamos y programamos',
       subtitle: 'Arquitectura Limpia & Prototipado',
-      description: 'Construimos tu plataforma desde cero con código optimizado (Python/React/Tailwind). Cero plantillas lentas: probamos velocidad, contraste de colores y la experiencia de compra en móviles.',
+      description: 'Construimos tu plataforma desde cero con código optimizado (Python/React/Tailwind). Arquitectura limpia: garantizamos máxima velocidad de carga, alta seguridad y una experiencia impecable en móviles.',
       icon: Layers,
-      tag: 'DESARROLLO ARTESANAL',
+      tag: 'INGENIERÍA A MEDIDA',
     },
     {
       number: '03',
